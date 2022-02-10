@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>UI Icons /social_facebook</title>
+    <defs>
+        <path d="M9.5953125,24 L9.5953125,13.265625 L6,13.265625 L6,9 L9.5953125,9 L9.5953125,5.6390625 C9.5953125,1.9875 11.8265625,0 15.084375,0 C16.6453125,0 17.9859375,0.1171875 18.375,0.16875 L18.375,3.984375 L16.115625,3.984375 C14.34375,3.984375 14.0015625,4.828125 14.0015625,6.0609375 L14.0015625,9 L18,9 L17.4515625,13.265625 L14.0015625,13.265625 L14.0015625,24" id="path-1"></path>
+    </defs>
+    <g id="UI-Icons-/social_facebook" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="path-1" fill="#FFFFFF" xlink:href="#path-1"></use>
+    </g>
+</svg>
