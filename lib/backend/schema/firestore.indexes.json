@@ -1,0 +1,44 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "gratitudeJournal",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "postTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "courseJournal",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "postTime",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}
