@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>384010699824-hnqtq134gko4o8h7fcf1lm3ab95mj491.apps.googleusercontent.com</string>
+	<string>384010699824-pk8cmscor2i49sjmbr1sf21i08rrtboc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.384010699824-hnqtq134gko4o8h7fcf1lm3ab95mj491</string>
+	<string>com.googleusercontent.apps.384010699824-pk8cmscor2i49sjmbr1sf21i08rrtboc</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>384010699824-8emiotblkk9jec0lkkpkk3nou9pptrul.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kalda.ios</string>
+	<string>com.flutterflow.kaldafeb2022</string>
 	<key>PROJECT_ID</key>
 	<string>kalda-flutter-flow</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:384010699824:ios:b5f138137e11661e0bd9f5</string>
+	<string>1:384010699824:ios:4e1cb373579c5fb80bd9f5</string>
 </dict>
 </plist>
