@@ -1,0 +1,103 @@
+import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_video_player.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class VideoPlayerMindfSessionWidget extends StatefulWidget {
+  const VideoPlayerMindfSessionWidget({
+    Key key,
+    this.mindfulRefPlayer,
+    this.mindfulVideosRefPlayer,
+  }) : super(key: key);
+
+  final DocumentReference mindfulRefPlayer;
+  final DocumentReference mindfulVideosRefPlayer;
+
+  @override
+  _VideoPlayerMindfSessionWidgetState createState() =>
+      _VideoPlayerMindfSessionWidgetState();
+}
+
+class _VideoPlayerMindfSessionWidgetState
+    extends State<VideoPlayerMindfSessionWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<MindfulnessSessionsRecord>>(
+      stream: queryMindfulnessSessionsRecord(
+        singleRecord: true,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(
+                color: FlutterFlowTheme.of(context).primaryColor,
+              ),
+            ),
+          );
+        }
+        List<MindfulnessSessionsRecord>
+            videoPlayerMindfSessionMindfulnessSessionsRecordList =
+            snapshot.data;
+        // Return an empty Container when the document does not exist.
+        if (snapshot.data.isEmpty) {
+          return Container();
+        }
+        final videoPlayerMindfSessionMindfulnessSessionsRecord =
+            videoPlayerMindfSessionMindfulnessSessionsRecordList.isNotEmpty
+                ? videoPlayerMindfSessionMindfulnessSessionsRecordList.first
+                : null;
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: Colors.black,
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Stack(
+              children: [
+                FlutterFlowVideoPlayer(
+                  path: videoPlayerMindfSessionMindfulnessSessionsRecord
+                      .sessionVideo,
+                  videoType: VideoType.network,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 1,
+                  autoPlay: true,
+                  looping: false,
+                  showControls: false,
+                  allowFullScreen: false,
+                  allowPlaybackSpeedMenu: false,
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 46, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.black,
+                          size: 36,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

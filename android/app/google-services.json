@@ -14,11 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "384010699824-f7rfldancpkk4tc2kmvjp3t1p92sh6pp.apps.googleusercontent.com",
+          "client_id": "384010699824-8emiotblkk9jec0lkkpkk3nou9pptrul.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.flutterflow.kaldafeb2022",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "384010699824-l53iijr520hef1rr0rak5ahhhr408n64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.kaldafeb2022",
+            "certificate_hash": "712a57f817cf55f811974399d7b5d0f842ee3109"
           }
         },
         {

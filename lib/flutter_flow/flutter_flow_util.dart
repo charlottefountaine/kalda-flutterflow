@@ -12,6 +12,7 @@ import '../main.dart';
 
 import 'lat_lng.dart';
 
+export '../app_state.dart';
 export 'dart:math' show min, max;
 export 'package:intl/intl.dart';
 export 'package:cloud_firestore/cloud_firestore.dart' show DocumentReference;
@@ -160,6 +161,9 @@ extension StringDocRef on String {
 
 void setAppLanguage(BuildContext context, String language) =>
     MyApp.of(context).setLocale(Locale(language, ''));
+
+void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
+    MyApp.of(context).setThemeMode(themeMode);
 
 void showSnackbar(
   BuildContext context,

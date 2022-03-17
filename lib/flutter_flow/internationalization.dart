@@ -20,9 +20,9 @@ class FFLocalizations {
       (kTranslationsMap[key] ?? {})[locale.languageCode] ?? '';
 
   String getVariableText({
-    String en = '',
+    String enText = '',
   }) =>
-      [en][languageIndex] ?? '';
+      [enText][languageIndex] ?? '';
 }
 
 class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {

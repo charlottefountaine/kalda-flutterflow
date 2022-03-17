@@ -1,15 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:kalda_feb_2022/onboarding/onboarding_widget.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'auth/firebase_user_provider.dart';
+import 'auth/auth_util.dart';
+import 'backend/push_notifications/push_notifications_util.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:kalda_feb_2022/onboarding/onboarding_widget.dart';
+import 'package:kalda_feb_2022/main_page_free/main_page_free_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
 
   runApp(MyApp());
@@ -18,7 +21,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  State<MyApp> createState() => _MyAppState();
+  _MyAppState createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
@@ -26,8 +29,33 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale;
+  ThemeMode _themeMode = ThemeMode.system;
+  Stream<KaldaFeb2022FirebaseUser> userStream;
+  KaldaFeb2022FirebaseUser initialUser;
+  bool displaySplashImage = true;
+  final authUserSub = authenticatedUserStream.listen((_) {});
+  final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
+
+  @override
+  void initState() {
+    super.initState();
+    userStream = kaldaFeb2022FirebaseUserStream()
+      ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    Future.delayed(
+        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+  }
+
+  @override
+  void dispose() {
+    authUserSub.cancel();
+    fcmTokenSub.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +71,21 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [
         Locale('en', ''),
       ],
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: OnboardingWidget(),
+      theme: ThemeData(brightness: Brightness.light),
+      themeMode: _themeMode,
+      home: initialUser == null || displaySplashImage
+          ? Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                ),
+              ),
+            )
+          : currentUser.loggedIn
+              ? PushNotificationsHandler(child: MainPageFreeWidget())
+              : OnboardingWidget(),
     );
   }
 }
