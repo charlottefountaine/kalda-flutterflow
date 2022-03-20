@@ -295,7 +295,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                           ...createUsersCoursesRecordData(
                                             courseFinished: true,
                                           ),
-                                          'progress': FieldValue.increment(1),
+                                          'progress': FieldValue.increment(0),
                                         };
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
@@ -309,7 +309,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                         );
                                       } else {
                                         final usersCoursesUpdateData = {
-                                          'progress': FieldValue.increment(1),
+                                          'progress': FieldValue.increment(0),
                                         };
                                         await courseAddcommentUsersCoursesRecord
                                             .reference

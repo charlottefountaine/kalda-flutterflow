@@ -47,10 +47,10 @@
               "client_type": 3
             },
             {
-              "client_id": "384010699824-pk8cmscor2i49sjmbr1sf21i08rrtboc.apps.googleusercontent.com",
+              "client_id": "384010699824-hnqtq134gko4o8h7fcf1lm3ab95mj491.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.flutterflow.kaldafeb2022"
+                "bundle_id": "com.kalda.ios"
               }
             }
           ]
