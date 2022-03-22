@@ -9,7 +9,8 @@ import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:kalda_feb_2022/onboarding/onboarding_widget.dart';
-import 'package:kalda_feb_2022/main_page_free/main_page_free_widget.dart';
+import 'package:kalda_feb_2022/main_page_paid/main_page_paid_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,13 +79,14 @@ class _MyAppState extends State<MyApp> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: CircularProgressIndicator(
+                child: SpinKitPumpingHeart(
                   color: FlutterFlowTheme.of(context).primaryColor,
+                  size: 50,
                 ),
               ),
             )
           : currentUser.loggedIn
-              ? PushNotificationsHandler(child: MainPageFreeWidget())
+              ? PushNotificationsHandler(child: MainPagePaidWidget())
               : OnboardingWidget(),
     );
   }

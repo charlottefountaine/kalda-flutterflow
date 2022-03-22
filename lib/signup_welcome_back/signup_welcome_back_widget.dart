@@ -2,11 +2,12 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main_page_free/main_page_free_widget.dart';
+import '../main_page_paid/main_page_paid_widget.dart';
 import '../signup_create_acc/signup_create_acc_widget.dart';
 import '../signup_reset_pass/signup_reset_pass_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupWelcomeBackWidget extends StatefulWidget {
@@ -126,7 +127,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MainPageFreeWidget(),
+                                    builder: (context) => MainPagePaidWidget(),
                                   ),
                                   (r) => false,
                                 );
@@ -165,7 +166,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MainPageFreeWidget(),
+                                    builder: (context) => MainPagePaidWidget(),
                                   ),
                                   (r) => false,
                                 );
@@ -203,7 +204,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MainPageFreeWidget(),
+                                  builder: (context) => MainPagePaidWidget(),
                                 ),
                                 (r) => false,
                               );
@@ -369,7 +370,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MainPageFreeWidget(),
+                                  builder: (context) => MainPagePaidWidget(),
                                 ),
                                 (r) => false,
                               );

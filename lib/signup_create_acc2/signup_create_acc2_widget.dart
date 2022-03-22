@@ -8,6 +8,7 @@ import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupCreateAcc2Widget extends StatefulWidget {
@@ -25,8 +26,10 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
   @override
   void initState() {
     super.initState();
-    pronounsCreateAccController = TextEditingController();
-    usernameCreateAccController = TextEditingController();
+    pronounsCreateAccController =
+        TextEditingController(text: currentUserDocument?.pronouns);
+    usernameCreateAccController =
+        TextEditingController(text: currentUserDisplayName);
   }
 
   @override
@@ -105,36 +108,38 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: TextFormField(
-                          controller: usernameCreateAccController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Username',
-                            hintText: 'Enter your username here...',
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                        child: AuthUserStreamWidget(
+                          child: TextFormField(
+                            controller: usernameCreateAccController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Username',
+                              hintText: 'Enter your username here...',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              filled: true,
+                              fillColor: Color(0x77FFFFFF),
+                              contentPadding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
                             ),
-                            filled: true,
-                            fillColor: Color(0x77FFFFFF),
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.black,
+                                    ),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                  ),
                         ),
                       ),
                     ],
@@ -147,37 +152,39 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: TextFormField(
-                          controller: pronounsCreateAccController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Your Pronouns',
-                            hintText: 'Enter your Pronouns here...',
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                        child: AuthUserStreamWidget(
+                          child: TextFormField(
+                            controller: pronounsCreateAccController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Your Pronouns',
+                              hintText: 'Enter your Pronouns here...',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              filled: true,
+                              fillColor: Color(0x77FFFFFF),
+                              contentPadding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
                             ),
-                            filled: true,
-                            fillColor: Color(0x77FFFFFF),
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal,
-                                  ),
                         ),
                       ),
                     ],
@@ -197,6 +204,7 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                               final usersUpdateData = createUsersRecordData(
                                 displayName: usernameCreateAccController.text,
                                 pronouns: pronounsCreateAccController.text,
+                                premium: true,
                               );
                               await currentUserReference
                                   .update(usersUpdateData);

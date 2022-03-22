@@ -6,6 +6,7 @@ import '../signup_create_acc2/signup_create_acc2_widget.dart';
 import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupCreateAccWidget extends StatefulWidget {
@@ -148,46 +149,48 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: Color(0xFF090F13),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                            child: InkWell(
-                              onTap: () async {
-                                final user = await signInWithApple(context);
-                                if (user == null) {
-                                  return;
-                                }
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        SignupCreateAcc2Widget(),
+                      if (isiOS ?? true)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFF090F13),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                              child: InkWell(
+                                onTap: () async {
+                                  final user = await signInWithApple(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          SignupCreateAcc2Widget(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
                                   ),
-                                );
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.asset(
-                                  'assets/images/apple.png',
-                                  fit: BoxFit.fill,
+                                  child: Image.asset(
+                                    'assets/images/apple.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
                       Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: Color(0xFF090F13),

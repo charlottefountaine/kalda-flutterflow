@@ -19,6 +19,8 @@ class FFAppState {
   SharedPreferences prefs;
 
   bool searchFail = false;
+
+  bool affirmationPush = false;
 }
 
 LatLng _latLngFromString(String val) {

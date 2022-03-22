@@ -1,28 +1,34 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../signup_welcome_back/signup_welcome_back_widget.dart';
+import '../main_page_paid/main_page_paid_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignupResetPassWidget extends StatefulWidget {
-  const SignupResetPassWidget({Key key}) : super(key: key);
+class UpdateProfileWidget extends StatefulWidget {
+  const UpdateProfileWidget({Key key}) : super(key: key);
 
   @override
-  _SignupResetPassWidgetState createState() => _SignupResetPassWidgetState();
+  _UpdateProfileWidgetState createState() => _UpdateProfileWidgetState();
 }
 
-class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
-  TextEditingController emailAddressLoginController;
+class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
+  TextEditingController pronounsCreateAccController;
+  TextEditingController usernameCreateAccController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailAddressLoginController = TextEditingController();
+    pronounsCreateAccController =
+        TextEditingController(text: currentUserDocument?.pronouns);
+    usernameCreateAccController =
+        TextEditingController(text: currentUserDisplayName);
   }
 
   @override
@@ -58,7 +64,7 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                     children: [
                       Expanded(
                         child: AutoSizeText(
-                          'Reset your password',
+                          'Update your profile',
                           textAlign: TextAlign.start,
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Poppins',
@@ -80,7 +86,7 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                     children: [
                       Expanded(
                         child: AutoSizeText(
-                          'Enter the email address you used to create your Kalda account and we’ll send you a password reset link.',
+                          'Tell us a bit more about you ',
                           textAlign: TextAlign.start,
                           style:
                               FlutterFlowTheme.of(context).bodyText2.override(
@@ -95,42 +101,89 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: TextFormField(
-                          controller: emailAddressLoginController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Email address',
-                            hintText: 'Enter your email address here...',
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                        child: AuthUserStreamWidget(
+                          child: TextFormField(
+                            controller: usernameCreateAccController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Username',
+                              hintText: 'Enter your username here...',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              filled: true,
+                              fillColor: Color(0x77FFFFFF),
+                              contentPadding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
                             ),
-                            filled: true,
-                            fillColor: Color(0x77FFFFFF),
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.black,
+                                    ),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: AuthUserStreamWidget(
+                          child: TextFormField(
+                            controller: pronounsCreateAccController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Your Pronouns',
+                              hintText: 'Enter your Pronouns here...',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              filled: true,
+                              fillColor: Color(0x77FFFFFF),
+                              contentPadding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
                         ),
                       ),
                     ],
@@ -147,29 +200,20 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (emailAddressLoginController.text.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Email required!',
-                                    ),
-                                  ),
-                                );
-                                return;
-                              }
-                              await resetPassword(
-                                email: emailAddressLoginController.text,
-                                context: context,
+                              final usersUpdateData = createUsersRecordData(
+                                displayName: usernameCreateAccController.text,
+                                pronouns: pronounsCreateAccController.text,
                               );
+                              await currentUserReference
+                                  .update(usersUpdateData);
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      SignupWelcomeBackWidget(),
+                                  builder: (context) => MainPagePaidWidget(),
                                 ),
                               );
                             },
-                            text: 'Send reset link',
+                            text: 'Continue',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
@@ -198,12 +242,7 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignupWelcomeBackWidget(),
-                        ),
-                      );
+                      Navigator.pop(context);
                     },
                     child: Container(
                       width: double.infinity,
@@ -214,7 +253,7 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                       child: Align(
                         alignment: AlignmentDirectional(0, 0),
                         child: Text(
-                          'Back to sign in',
+                          'Cancel',
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(

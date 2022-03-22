@@ -10,6 +10,7 @@ import '../settings/settings_widget.dart';
 import '../video_player_meditation/video_player_meditation_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainPageFreeWidget extends StatefulWidget {
@@ -1609,180 +1610,192 @@ class _MainPageFreeWidgetState extends State<MainPageFreeWidget> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          'Unlock Kalda Premium',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                lineHeight: 1.2,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          '😊 Live online events',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                lineHeight: 1.2,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          '😊 LGBTQIA+ therapist created programes',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                lineHeight: 1.2,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          '😊 Daily habit building activities',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                lineHeight: 1.2,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          '😊 Mindfulness audio content',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                lineHeight: 1.2,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          '😊 You will be billed monthly, cancel any time in the app store.',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                lineHeight: 1.2,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 30),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PaymentUnlockWidget(),
-                                ),
-                              );
-                            },
-                            text: 'Upgrade to premium',
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 56,
-                              color: Color(0xFF00F3FD),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 2,
-                              ),
-                              borderRadius: 5,
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              'Unlock Kalda Premium',
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        lineHeight: 1.2,
+                                      ),
                             ),
-                            showLoadingIndicator: false,
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              '😊 Live online events',
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              '😊 LGBTQIA+ therapist created programes',
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              '😊 Daily habit building activities',
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              '😊 Mindfulness audio content',
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              '😊 You will be billed monthly, cancel any time in the app store.',
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 30),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional(0, 0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PaymentUnlockWidget(),
+                                    ),
+                                  );
+                                },
+                                text: 'Upgrade to premium',
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 56,
+                                  color: Color(0xFF00F3FD),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2,
+                                  ),
+                                  borderRadius: 5,
+                                ),
+                                showLoadingIndicator: false,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

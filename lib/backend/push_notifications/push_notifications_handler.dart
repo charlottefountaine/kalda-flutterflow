@@ -5,6 +5,7 @@ import 'serialization_util.dart';
 import '../backend.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +23,7 @@ import '../../privacy_statement/privacy_statement_widget.dart';
 import '../../journal_entries/journal_entries_widget.dart';
 import '../../journal_entry/journal_entry_widget.dart';
 import '../../journal_addcomment/journal_addcomment_widget.dart';
-import '../../main_page_paid/main_page_paid_widget.dart';
-import '../../main_page_paid_progr_bar/main_page_paid_progr_bar_widget.dart';
+import '../../main_page_free/main_page_free_widget.dart';
 import '../../video_player_meditation/video_player_meditation_widget.dart';
 import '../../video_player_course/video_player_course_widget.dart';
 import '../../sessions_entry_free/sessions_entry_free_widget.dart';
@@ -46,6 +46,7 @@ import '../../program_journal_entry/program_journal_entry_widget.dart';
 import '../../session_entry_paid/session_entry_paid_widget.dart';
 import '../../video_player_mindf_session/video_player_mindf_session_widget.dart';
 import '../../video_pla_affirmation/video_pla_affirmation_widget.dart';
+import '../../update_profile/update_profile_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -103,8 +104,9 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
           child: SizedBox(
             width: 50,
             height: 50,
-            child: CircularProgressIndicator(
+            child: SpinKitPumpingHeart(
               color: FlutterFlowTheme.of(context).primaryColor,
+              size: 50,
             ),
           ),
         )
@@ -127,8 +129,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         gratitudeEntryRef: getParameter(data, 'gratitudeEntryRef'),
       ),
   'JournalAddcomment': (data) async => JournalAddcommentWidget(),
-  'MainPagePaid': (data) async => MainPagePaidWidget(),
-  'MainPagePaidProgrBar': (data) async => MainPagePaidProgrBarWidget(),
+  'MainPageFree': (data) async => MainPageFreeWidget(),
   'VideoPlayerMeditation': (data) async => VideoPlayerMeditationWidget(),
   'VideoPlayerCourse': (data) async => VideoPlayerCourseWidget(
         courseRefPlayer: getParameter(data, 'courseRefPlayer'),
@@ -170,7 +171,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         mindfulRefPlayer: getParameter(data, 'mindfulRefPlayer'),
         mindfulVideosRefPlayer: getParameter(data, 'mindfulVideosRefPlayer'),
       ),
-  'VideoPlaAffirmation': (data) async => VideoPlaAffirmationWidget(),
+  'VideoPlaAffirmation': (data) async => VideoPlaAffirmationWidget(
+        randomNumber: getParameter(data, 'randomNumber'),
+      ),
+  'updateProfile': (data) async => UpdateProfileWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
