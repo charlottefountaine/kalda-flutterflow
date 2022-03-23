@@ -407,11 +407,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupResetPassWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(
@@ -441,11 +442,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupCreateAccWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

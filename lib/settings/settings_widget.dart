@@ -673,29 +673,16 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             children: [
                               Align(
                                 alignment: AlignmentDirectional(-1, 0.1),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await signOut();
-                                    await Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            SignupCreateAccWidget(),
+                                child: Text(
+                                  'Log out',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
                                       ),
-                                      (r) => false,
-                                    );
-                                  },
-                                  child: Text(
-                                    'Log out',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
                                 ),
                               ),
                               Expanded(

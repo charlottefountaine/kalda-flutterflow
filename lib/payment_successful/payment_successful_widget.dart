@@ -93,11 +93,12 @@ class _PaymentSuccessfulWidgetState extends State<PaymentSuccessfulWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MainPagePaidWidget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Home',

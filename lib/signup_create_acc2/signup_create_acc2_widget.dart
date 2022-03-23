@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main_page_paid/main_page_paid_widget.dart';
-import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -208,11 +207,12 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MainPagePaidWidget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Continue',
@@ -238,40 +238,6 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
-                  child: InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignupWelcomeBackWidget(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                      ),
-                      child: Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Text(
-                          'Sign In',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFF303030),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                      ),
-                    ),
                   ),
                 ),
               ],

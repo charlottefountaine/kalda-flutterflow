@@ -10,7 +10,6 @@ import '../payment_unlock/payment_unlock_widget.dart';
 import '../program_entry_paid/program_entry_paid_widget.dart';
 import '../session_entry_paid/session_entry_paid_widget.dart';
 import '../settings/settings_widget.dart';
-import '../signup_create_acc2/signup_create_acc2_widget.dart';
 import '../update_profile/update_profile_widget.dart';
 import '../video_pla_affirmation/video_pla_affirmation_widget.dart';
 import '../video_player_meditation/video_player_meditation_widget.dart';
@@ -82,11 +81,12 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
             ) ??
             false;
         if (confirmDialogResponse) {
-          await Navigator.push(
+          await Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => SignupCreateAcc2Widget(),
+              builder: (context) => UpdateProfileWidget(),
             ),
+            (r) => false,
           );
         }
       }
@@ -190,11 +190,12 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => UpdateProfileWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Row(
@@ -290,12 +291,13 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                             FFAppState().meditIndex + 1);
                                       }
 
-                                      await Navigator.push(
+                                      await Navigator.pushAndRemoveUntil(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               VideoPlayerMeditationWidget(),
                                         ),
+                                        (r) => false,
                                       );
                                     },
                                     child: Card(
@@ -360,7 +362,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                         max: 16,
                                         count: 1,
                                       );
-                                      await Navigator.push(
+                                      await Navigator.pushAndRemoveUntil(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
@@ -371,6 +373,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                             ),
                                           ),
                                         ),
+                                        (r) => false,
                                       );
                                       setState(() =>
                                           FFAppState().affirmationPush = false);
@@ -980,7 +983,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                             return InkWell(
                               onTap: () async {
                                 if (currentUserDocument?.premium) {
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
@@ -990,6 +993,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                 .reference,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 } else {
                                   await Navigator.push(

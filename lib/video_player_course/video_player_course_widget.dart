@@ -122,13 +122,14 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         Navigator.pop(context);
-                        await Navigator.push(
+                        await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CourseAddcommentWidget(
                               courseRefAddcomment: widget.courseRefPlayer,
                             ),
                           ),
+                          (r) => false,
                         );
                       },
                       text: 'Next',
@@ -160,13 +161,14 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
                       InkWell(
                         onTap: () async {
                           Navigator.pop(context);
-                          await Navigator.push(
+                          await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
                               builder: (context) => QuitCourseWidget(
                                 courseRefQuit: widget.courseRefPlayer,
                               ),
                             ),
+                            (r) => false,
                           );
                         },
                         child: Icon(

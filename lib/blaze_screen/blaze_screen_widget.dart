@@ -28,13 +28,14 @@ class _BlazeScreenWidgetState extends State<BlazeScreenWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 1000));
-      await Navigator.push(
+      await Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => VideoPlayerCourseWidget(
             courseRefPlayer: widget.blazeVideoRef,
           ),
         ),
+        (r) => false,
       );
     });
   }

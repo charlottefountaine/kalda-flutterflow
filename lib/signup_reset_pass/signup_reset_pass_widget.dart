@@ -161,12 +161,13 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                                 email: emailAddressLoginController.text,
                                 context: context,
                               );
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       SignupWelcomeBackWidget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Send reset link',
@@ -198,11 +199,12 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupWelcomeBackWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

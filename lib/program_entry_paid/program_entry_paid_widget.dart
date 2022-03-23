@@ -426,7 +426,8 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                 AlignmentDirectional(0, 0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                await Navigator.push(
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
@@ -435,6 +436,7 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                           widget.refFormList,
                                                     ),
                                                   ),
+                                                  (r) => false,
                                                 );
                                               },
                                               text: 'Restart the course',
@@ -470,7 +472,8 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                 AlignmentDirectional(0, 0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                await Navigator.push(
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
@@ -480,6 +483,7 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                               .reference,
                                                     ),
                                                   ),
+                                                  (r) => false,
                                                 );
                                               },
                                               text: 'Continue course',
@@ -535,7 +539,8 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                   .collection
                                                   .doc()
                                                   .set(usersCoursesCreateData);
-                                              await Navigator.push(
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
@@ -545,6 +550,7 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                             .reference,
                                                   ),
                                                 ),
+                                                (r) => false,
                                               );
                                             },
                                             text: 'Start the program',

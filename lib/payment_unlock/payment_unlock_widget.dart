@@ -315,12 +315,14 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await Navigator.push(
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       PaymentSuccessfulWidget(),
                                                 ),
+                                                (r) => false,
                                               );
                                             },
                                             text: '£2.99 a month',

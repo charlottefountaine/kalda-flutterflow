@@ -53,19 +53,6 @@ class _VideoPlayerMeditationWidgetState
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 108, 0, 0),
-                  child: InkWell(
-                    onTap: () async {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black,
-                      size: 36,
-                    ),
-                  ),
-                ),
                 Align(
                   alignment: AlignmentDirectional(0, 0),
                   child: FlutterFlowVideoPlayer(
@@ -78,6 +65,19 @@ class _VideoPlayerMeditationWidgetState
                     showControls: false,
                     allowFullScreen: false,
                     allowPlaybackSpeedMenu: false,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 108, 0, 0),
+                  child: InkWell(
+                    onTap: () async {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.chevron_left,
+                      color: Colors.black,
+                      size: 36,
+                    ),
                   ),
                 ),
               ],

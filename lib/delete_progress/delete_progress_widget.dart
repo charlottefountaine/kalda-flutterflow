@@ -141,13 +141,14 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                                   await deleteProgressUsersCoursesRecord
                                       .reference
                                       .update(usersCoursesUpdateData);
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => BlazeScreenWidget(
                                         blazeVideoRef: widget.courseRefDelProgr,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 text: 'Start the course again',

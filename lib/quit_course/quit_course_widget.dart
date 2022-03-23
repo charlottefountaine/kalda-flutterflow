@@ -99,13 +99,14 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => BlazeScreenWidget(
                                     blazeVideoRef: widget.courseRefQuit,
                                   ),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Continue',
@@ -137,11 +138,12 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => MainPagePaidWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

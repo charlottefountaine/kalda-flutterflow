@@ -155,7 +155,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => BlazeScreenWidget(
@@ -163,6 +163,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                             widget.courseRefAddcomment,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 child: Icon(
@@ -173,7 +174,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                               ),
                               InkWell(
                                 onTap: () async {
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => QuitCourseWidget(
@@ -181,6 +182,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                             widget.courseRefAddcomment,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 child: Icon(
@@ -303,12 +305,13 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
                                             .update(usersCoursesUpdateData);
-                                        await Navigator.push(
+                                        await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 YouDidItWidget(),
                                           ),
+                                          (r) => false,
                                         );
                                       } else {
                                         final usersCoursesUpdateData = {
@@ -317,7 +320,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
                                             .update(usersCoursesUpdateData);
-                                        await Navigator.push(
+                                        await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
@@ -326,6 +329,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                                   widget.courseRefAddcomment,
                                             ),
                                           ),
+                                          (r) => false,
                                         );
                                       }
                                     },

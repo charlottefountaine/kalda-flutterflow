@@ -1,4 +1,3 @@
-import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -7,7 +6,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingWidget extends StatefulWidget {
@@ -138,33 +136,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 140, 0, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.asset(
-                                          'assets/images/support-imge.png',
-                                          fit: BoxFit.contain,
-                                        ),
-                                        allowRotation: false,
-                                        tag: 'imageTag4',
-                                        useHeroAnimation: true,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: 'imageTag4',
-                                  transitionOnUserGestures: true,
-                                  child: Image.asset(
-                                    'assets/images/support-imge.png',
-                                    width: MediaQuery.of(context).size.width,
-                                    fit: BoxFit.scaleDown,
-                                  ),
-                                ),
+                              child: Image.asset(
+                                'assets/images/support-imge.png',
+                                width: MediaQuery.of(context).size.width,
+                                fit: BoxFit.scaleDown,
                               ),
                             ),
                             Padding(
@@ -238,33 +213,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 140, 0, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.asset(
-                                          'assets/images/habits-image.png',
-                                          fit: BoxFit.contain,
-                                        ),
-                                        allowRotation: false,
-                                        tag: 'imageTag6',
-                                        useHeroAnimation: true,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: 'imageTag6',
-                                  transitionOnUserGestures: true,
-                                  child: Image.asset(
-                                    'assets/images/habits-image.png',
-                                    width: MediaQuery.of(context).size.width,
-                                    fit: BoxFit.scaleDown,
-                                  ),
-                                ),
+                              child: Image.asset(
+                                'assets/images/habits-image.png',
+                                width: MediaQuery.of(context).size.width,
+                                fit: BoxFit.scaleDown,
                               ),
                             ),
                             Padding(
@@ -289,12 +241,13 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 onPressed: () async {
                                   setState(() =>
                                       FFAppState().onboardingComplete = true);
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           SignupCreateAccWidget(),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 text: 'Get Started',

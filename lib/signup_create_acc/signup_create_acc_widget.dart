@@ -32,11 +32,12 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (!(FFAppState().onboardingComplete)) {
-        await Navigator.push(
+        await Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => OnboardingWidget(),
           ),
+          (r) => false,
         );
       }
     });
@@ -140,12 +141,13 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                                 if (user == null) {
                                   return;
                                 }
-                                await Navigator.push(
+                                await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         SignupCreateAcc2Widget(),
                                   ),
+                                  (r) => false,
                                 );
                               },
                               child: Container(
@@ -181,12 +183,13 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                                   if (user == null) {
                                     return;
                                   }
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           SignupCreateAcc2Widget(),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 child: Container(
@@ -219,12 +222,13 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                               if (user == null) {
                                 return;
                               }
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       SignupCreateAcc2Widget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             child: Container(
@@ -494,11 +498,12 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupWelcomeBackWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

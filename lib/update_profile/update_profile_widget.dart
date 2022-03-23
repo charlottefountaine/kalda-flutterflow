@@ -206,11 +206,12 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MainPagePaidWidget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Continue',
