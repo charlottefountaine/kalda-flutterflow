@@ -28,10 +28,8 @@ class _VideoPlayerMindfSessionWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<MindfulnessSessionsRecord>>(
-      stream: queryMindfulnessSessionsRecord(
-        singleRecord: true,
-      ),
+    return StreamBuilder<MindfulnessSessionsRecord>(
+      stream: MindfulnessSessionsRecord.getDocument(widget.mindfulRefPlayer),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -46,17 +44,7 @@ class _VideoPlayerMindfSessionWidgetState
             ),
           );
         }
-        List<MindfulnessSessionsRecord>
-            videoPlayerMindfSessionMindfulnessSessionsRecordList =
-            snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
-        final videoPlayerMindfSessionMindfulnessSessionsRecord =
-            videoPlayerMindfSessionMindfulnessSessionsRecordList.isNotEmpty
-                ? videoPlayerMindfSessionMindfulnessSessionsRecordList.first
-                : null;
+        final videoPlayerMindfSessionMindfulnessSessionsRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Colors.black,

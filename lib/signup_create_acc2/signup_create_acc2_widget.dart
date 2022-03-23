@@ -3,7 +3,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main_page_free/main_page_free_widget.dart';
+import '../main_page_paid/main_page_paid_widget.dart';
 import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -211,7 +211,7 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MainPageFreeWidget(),
+                                  builder: (context) => MainPagePaidWidget(),
                                 ),
                               );
                             },

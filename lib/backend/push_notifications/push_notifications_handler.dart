@@ -23,12 +23,8 @@ import '../../privacy_statement/privacy_statement_widget.dart';
 import '../../journal_entries/journal_entries_widget.dart';
 import '../../journal_entry/journal_entry_widget.dart';
 import '../../journal_addcomment/journal_addcomment_widget.dart';
-import '../../main_page_free/main_page_free_widget.dart';
 import '../../video_player_meditation/video_player_meditation_widget.dart';
 import '../../video_player_course/video_player_course_widget.dart';
-import '../../sessions_entry_free/sessions_entry_free_widget.dart';
-import '../../sessions_entry_paid/sessions_entry_paid_widget.dart';
-import '../../program_entry_free/program_entry_free_widget.dart';
 import '../../program_entry_paid/program_entry_paid_widget.dart';
 import '../../course_addcomment/course_addcomment_widget.dart';
 import '../../you_did_it/you_did_it_widget.dart';
@@ -129,15 +125,11 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         gratitudeEntryRef: getParameter(data, 'gratitudeEntryRef'),
       ),
   'JournalAddcomment': (data) async => JournalAddcommentWidget(),
-  'MainPageFree': (data) async => MainPageFreeWidget(),
   'VideoPlayerMeditation': (data) async => VideoPlayerMeditationWidget(),
   'VideoPlayerCourse': (data) async => VideoPlayerCourseWidget(
         courseRefPlayer: getParameter(data, 'courseRefPlayer'),
         videosRefPlayer: getParameter(data, 'videosRefPlayer'),
       ),
-  'SessionsEntryFree': (data) async => SessionsEntryFreeWidget(),
-  'SessionsEntryPaid': (data) async => SessionsEntryPaidWidget(),
-  'ProgramEntryFree': (data) async => ProgramEntryFreeWidget(),
   'ProgramEntryPaid': (data) async => ProgramEntryPaidWidget(
         refFormList: getParameter(data, 'refFormList'),
       ),

@@ -22,8 +22,8 @@ class _VideoPlayerMeditationWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<VideoMeditationsRecord>>(
       stream: queryVideoMeditationsRecord(
-        queryBuilder: (videoMeditationsRecord) =>
-            videoMeditationsRecord.orderBy('videoIndex'),
+        queryBuilder: (videoMeditationsRecord) => videoMeditationsRecord
+            .where('videoIndex', isEqualTo: FFAppState().meditIndex),
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -42,10 +42,6 @@ class _VideoPlayerMeditationWidgetState
         }
         List<VideoMeditationsRecord>
             videoPlayerMeditationVideoMeditationsRecordList = snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
         final videoPlayerMeditationVideoMeditationsRecord =
             videoPlayerMeditationVideoMeditationsRecordList.isNotEmpty
                 ? videoPlayerMeditationVideoMeditationsRecordList.first
@@ -58,7 +54,7 @@ class _VideoPlayerMeditationWidgetState
             child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 48, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 108, 0, 0),
                   child: InkWell(
                     onTap: () async {
                       Navigator.pop(context);
@@ -79,9 +75,9 @@ class _VideoPlayerMeditationWidgetState
                     height: MediaQuery.of(context).size.height * 1,
                     autoPlay: true,
                     looping: false,
-                    showControls: true,
-                    allowFullScreen: true,
-                    allowPlaybackSpeedMenu: true,
+                    showControls: false,
+                    allowFullScreen: false,
+                    allowPlaybackSpeedMenu: false,
                   ),
                 ),
               ],

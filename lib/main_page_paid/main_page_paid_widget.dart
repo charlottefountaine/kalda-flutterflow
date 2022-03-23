@@ -10,6 +10,7 @@ import '../payment_unlock/payment_unlock_widget.dart';
 import '../program_entry_paid/program_entry_paid_widget.dart';
 import '../session_entry_paid/session_entry_paid_widget.dart';
 import '../settings/settings_widget.dart';
+import '../signup_create_acc2/signup_create_acc2_widget.dart';
 import '../update_profile/update_profile_widget.dart';
 import '../video_pla_affirmation/video_pla_affirmation_widget.dart';
 import '../video_player_meditation/video_player_meditation_widget.dart';
@@ -18,6 +19,7 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -56,13 +58,46 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (!(currentUserDisplayName != null && currentUserDisplayName != '')) {
+        var confirmDialogResponse = await showDialog<bool>(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  title: Text('Finish your registration'),
+                  content: Text('Add username and pronouns'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                      child: Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                      child: Text('Update profile'),
+                    ),
+                  ],
+                );
+              },
+            ) ??
+            false;
+        if (confirmDialogResponse) {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SignupCreateAcc2Widget(),
+            ),
+          );
+        }
+      }
+    });
+
+    emailAddressController = TextEditingController();
     setupTriggerAnimations(
       animationsMap.values
           .where((anim) => anim.trigger == AnimationTrigger.onActionTrigger),
       this,
     );
-
-    emailAddressController = TextEditingController();
   }
 
   @override
@@ -247,6 +282,14 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 children: [
                                   InkWell(
                                     onTap: () async {
+                                      if ((FFAppState().meditIndex) >= 3) {
+                                        setState(
+                                            () => FFAppState().meditIndex = 1);
+                                      } else {
+                                        setState(() => FFAppState().meditIndex =
+                                            FFAppState().meditIndex + 1);
+                                      }
+
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -936,17 +979,27 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                     listViewIndex];
                             return InkWell(
                               onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        VideoPlayerMindfSessionWidget(
-                                      mindfulRefPlayer:
-                                          listViewMindfulnessSessionsRecord
-                                              .reference,
+                                if (currentUserDocument?.premium) {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          VideoPlayerMindfSessionWidget(
+                                        mindfulRefPlayer:
+                                            listViewMindfulnessSessionsRecord
+                                                .reference,
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                } else {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PaymentUnlockWidget(),
+                                    ),
+                                  );
+                                }
                               },
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -1059,9 +1112,10 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 25, 0, 0),
-                                                child: Image.asset(
-                                                  'assets/images/mindfulness1.png',
+                                                    .fromSTEB(0, 35, 0, 0),
+                                                child: Image.network(
+                                                  listViewMindfulnessSessionsRecord
+                                                      .sessionImage,
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   fit: BoxFit.contain,

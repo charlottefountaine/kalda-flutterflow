@@ -1,4 +1,4 @@
-package com.flutterflow.kaldafeb2022
+package com.flutterflow.kalda
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -14,6 +14,9 @@ class FFAppState {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
+    _meditIndex = prefs.getInt('ff_meditIndex') ?? _meditIndex;
+    _onboardingComplete =
+        prefs.getBool('ff_onboardingComplete') ?? _onboardingComplete;
   }
 
   SharedPreferences prefs;
@@ -21,6 +24,20 @@ class FFAppState {
   bool searchFail = false;
 
   bool affirmationPush = false;
+
+  int _meditIndex = 1;
+  int get meditIndex => _meditIndex;
+  set meditIndex(int _value) {
+    _meditIndex = _value;
+    prefs.setInt('ff_meditIndex', _value);
+  }
+
+  bool _onboardingComplete = false;
+  bool get onboardingComplete => _onboardingComplete;
+  set onboardingComplete(bool _value) {
+    _onboardingComplete = _value;
+    prefs.setBool('ff_onboardingComplete', _value);
+  }
 }
 
 LatLng _latLngFromString(String val) {

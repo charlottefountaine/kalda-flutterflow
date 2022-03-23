@@ -8,8 +8,8 @@ import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:kalda_feb_2022/onboarding/onboarding_widget.dart';
-import 'package:kalda_feb_2022/main_page_paid/main_page_paid_widget.dart';
+import 'package:kalda/signup_create_acc/signup_create_acc_widget.dart';
+import 'package:kalda/main_page_paid/main_page_paid_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() async {
@@ -31,8 +31,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  Stream<KaldaFeb2022FirebaseUser> userStream;
-  KaldaFeb2022FirebaseUser initialUser;
+  Stream<KaldaFirebaseUser> userStream;
+  KaldaFirebaseUser initialUser;
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    userStream = kaldaFeb2022FirebaseUserStream()
+    userStream = kaldaFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kalda Feb 2022',
+      title: 'Kalda',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
             )
           : currentUser.loggedIn
               ? PushNotificationsHandler(child: MainPagePaidWidget())
-              : OnboardingWidget(),
+              : SignupCreateAccWidget(),
     );
   }
 }

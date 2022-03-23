@@ -44,22 +44,20 @@ class _BlazeScreenWidgetState extends State<BlazeScreenWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Image.asset(
-                  'assets/images/onboarding_background_3.png',
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Stack(
+          children: [
+            Align(
+              alignment: AlignmentDirectional(0, 0),
+              child: Image.asset(
+                'assets/images/onboarding_background_3.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

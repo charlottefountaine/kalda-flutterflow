@@ -4,11 +4,11 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../help/help_widget.dart';
 import '../journal_entries/journal_entries_widget.dart';
-import '../onboarding/onboarding_widget.dart';
 import '../payment_cancelled/payment_cancelled_widget.dart';
 import '../payment_unlock/payment_unlock_widget.dart';
 import '../privacy_statement/privacy_statement_widget.dart';
 import '../program_journal_entries/program_journal_entries_widget.dart';
+import '../signup_create_acc/signup_create_acc_widget.dart';
 import '../terms_conditions/terms_conditions_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -663,7 +663,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             await Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => OnboardingWidget(),
+                                builder: (context) => SignupCreateAccWidget(),
                               ),
                               (r) => false,
                             );
@@ -680,7 +680,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            OnboardingWidget(),
+                                            SignupCreateAccWidget(),
                                       ),
                                       (r) => false,
                                     );

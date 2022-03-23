@@ -1,10 +1,8 @@
-import '../components/text_button_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../signup_create_acc/signup_create_acc_widget.dart';
-import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -36,6 +34,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           child: Stack(
             children: [
               PageView(
+                physics: const NeverScrollableScrollPhysics(),
                 controller: pageViewController ??=
                     PageController(initialPage: 0),
                 scrollDirection: Axis.horizontal,
@@ -83,8 +82,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20, 0, 20, 126),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await pageViewController.nextPage(
@@ -111,43 +110,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   borderRadius: 5,
                                 ),
                                 showLoadingIndicator: false,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 60),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          SignupWelcomeBackWidget(),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 56,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Text(
-                                      'Sign In',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF303030),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
-                                ),
                               ),
                             ),
                           ],
@@ -221,8 +183,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20, 0, 20, 126),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await pageViewController.nextPage(
@@ -247,42 +209,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                     width: 2,
                                   ),
                                   borderRadius: 5,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 60),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          SignupWelcomeBackWidget(),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 56,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Text(
-                                      'Sign in',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
                                 ),
                               ),
                             ),
@@ -357,10 +283,12 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20, 0, 20, 126),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  setState(() =>
+                                      FFAppState().onboardingComplete = true);
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -389,7 +317,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 ),
                               ),
                             ),
-                            TextButtonWidget(),
                           ],
                         ),
                       ),

@@ -2,10 +2,12 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../onboarding/onboarding_widget.dart';
 import '../signup_create_acc2/signup_create_acc2_widget.dart';
 import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,6 +29,18 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (!(FFAppState().onboardingComplete)) {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OnboardingWidget(),
+          ),
+        );
+      }
+    });
+
     confirmPasswordController = TextEditingController();
     confirmPasswordVisibility = false;
     emailAddressController = TextEditingController();
