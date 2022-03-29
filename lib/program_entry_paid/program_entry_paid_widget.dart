@@ -401,7 +401,6 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                         ),
                                         borderRadius: 5,
                                       ),
-                                      showLoadingIndicator: false,
                                     ),
                                   ),
                                 ),
@@ -426,8 +425,7 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                 AlignmentDirectional(0, 0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                await Navigator
-                                                    .pushAndRemoveUntil(
+                                                await Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
@@ -436,7 +434,6 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                           widget.refFormList,
                                                     ),
                                                   ),
-                                                  (r) => false,
                                                 );
                                               },
                                               text: 'Restart the course',
@@ -459,7 +456,6 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                 ),
                                                 borderRadius: 5,
                                               ),
-                                              showLoadingIndicator: false,
                                             ),
                                           ),
                                         ),
@@ -506,7 +502,6 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                                 ),
                                                 borderRadius: 5,
                                               ),
-                                              showLoadingIndicator: false,
                                             ),
                                           ),
                                         ),
@@ -573,7 +568,6 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                               ),
                                               borderRadius: 5,
                                             ),
-                                            showLoadingIndicator: false,
                                           ),
                                         ),
                                       ),

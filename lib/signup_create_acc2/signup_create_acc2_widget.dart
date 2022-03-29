@@ -233,7 +233,6 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

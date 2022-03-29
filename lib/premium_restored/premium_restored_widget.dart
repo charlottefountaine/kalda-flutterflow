@@ -118,7 +118,6 @@ class _PremiumRestoredWidgetState extends State<PremiumRestoredWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

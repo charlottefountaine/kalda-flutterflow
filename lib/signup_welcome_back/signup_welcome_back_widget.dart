@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,6 +7,7 @@ import '../main_page_paid/main_page_paid_widget.dart';
 import '../signup_create_acc/signup_create_acc_widget.dart';
 import '../signup_reset_pass/signup_reset_pass_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -124,6 +126,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                 if (user == null) {
                                   return;
                                 }
+
+                                final usersUpdateData = createUsersRecordData(
+                                  premium: true,
+                                );
+                                await currentUserReference
+                                    .update(usersUpdateData);
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
@@ -165,6 +173,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                   if (user == null) {
                                     return;
                                   }
+
+                                  final usersUpdateData = createUsersRecordData(
+                                    premium: true,
+                                  );
+                                  await currentUserReference
+                                      .update(usersUpdateData);
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
@@ -190,42 +204,50 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                             ),
                           ),
                         ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Color(0xFF090F13),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                          child: InkWell(
-                            onTap: () async {
-                              final user = await signInWithFacebook(context);
-                              if (user == null) {
-                                return;
-                              }
-                              await Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MainPagePaidWidget(),
+                      if ((FFAppState().onboardingComplete) !=
+                          (FFAppState().onboardingComplete))
+                        Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Color(0xFF090F13),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                            child: InkWell(
+                              onTap: () async {
+                                final user = await signInWithFacebook(context);
+                                if (user == null) {
+                                  return;
+                                }
+
+                                final usersUpdateData = createUsersRecordData(
+                                  premium: true,
+                                );
+                                await currentUserReference
+                                    .update(usersUpdateData);
+                                await Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MainPagePaidWidget(),
+                                  ),
+                                  (r) => false,
+                                );
+                              },
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
                                 ),
-                                (r) => false,
-                              );
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/facebook.png',
+                                child: Image.asset(
+                                  'assets/images/facebook.png',
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -396,7 +418,6 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

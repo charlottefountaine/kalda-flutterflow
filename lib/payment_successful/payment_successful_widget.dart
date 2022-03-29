@@ -119,7 +119,6 @@ class _PaymentSuccessfulWidgetState extends State<PaymentSuccessfulWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

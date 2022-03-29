@@ -109,7 +109,7 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                                 (r) => false,
                               );
                             },
-                            text: 'Continue',
+                            text: 'Continue course',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
@@ -127,7 +127,6 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

@@ -107,7 +107,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   ),
                                   borderRadius: 5,
                                 ),
-                                showLoadingIndicator: false,
                               ),
                             ),
                           ],

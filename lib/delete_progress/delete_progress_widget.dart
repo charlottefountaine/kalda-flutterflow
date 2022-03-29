@@ -169,7 +169,6 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                                   ),
                                   borderRadius: 5,
                                 ),
-                                showLoadingIndicator: false,
                               ),
                             ),
                           ),

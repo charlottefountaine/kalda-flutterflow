@@ -57,13 +57,16 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
                   child: FlutterFlowVideoPlayer(
                     path: videoPlaAffirmationVideoAffirmationsRecord.videoLink,
                     videoType: VideoType.network,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
+                    width: MediaQuery.of(context).size.width * 0.83,
                     autoPlay: true,
                     looping: false,
                     showControls: false,
@@ -72,16 +75,22 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 46, 0, 0),
-                  child: InkWell(
-                    onTap: () async {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black,
-                      size: 36,
-                    ),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 46, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: Colors.black,
+                          size: 36,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

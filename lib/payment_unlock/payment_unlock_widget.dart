@@ -345,7 +345,6 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                               ),
                                               borderRadius: 5,
                                             ),
-                                            showLoadingIndicator: false,
                                           ),
                                         ),
                                       ),

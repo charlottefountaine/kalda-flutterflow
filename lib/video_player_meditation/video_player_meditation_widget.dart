@@ -53,13 +53,16 @@ class _VideoPlayerMeditationWidgetState
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
                   child: FlutterFlowVideoPlayer(
                     path: videoPlayerMeditationVideoMeditationsRecord.videoLink,
                     videoType: VideoType.network,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
+                    width: MediaQuery.of(context).size.width * 0.83,
                     autoPlay: true,
                     looping: false,
                     showControls: false,
@@ -68,7 +71,7 @@ class _VideoPlayerMeditationWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 108, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 46, 0, 0),
                   child: InkWell(
                     onTap: () async {
                       Navigator.pop(context);

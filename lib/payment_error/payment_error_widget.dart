@@ -118,7 +118,6 @@ class _PaymentErrorWidgetState extends State<PaymentErrorWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

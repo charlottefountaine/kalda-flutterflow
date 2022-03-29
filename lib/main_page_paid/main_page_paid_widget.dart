@@ -59,7 +59,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (!(currentUserDisplayName != null && currentUserDisplayName != '')) {
+      if (!(currentUserDocument?.pronouns != null &&
+          currentUserDocument?.pronouns != '')) {
         var confirmDialogResponse = await showDialog<bool>(
               context: context,
               builder: (alertDialogContext) {
@@ -81,12 +82,11 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
             ) ??
             false;
         if (confirmDialogResponse) {
-          await Navigator.pushAndRemoveUntil(
+          await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => UpdateProfileWidget(),
             ),
-            (r) => false,
           );
         }
       }
@@ -163,7 +163,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 },
                                 text: 'Upgrade to premium',
                                 options: FFButtonOptions(
-                                  width: 200,
+                                  width: 220,
                                   height: 56,
                                   color: Color(0xFF00F3FD),
                                   textStyle: FlutterFlowTheme.of(context)
@@ -190,36 +190,38 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.pushAndRemoveUntil(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => UpdateProfileWidget(),
                         ),
-                        (r) => false,
                       );
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        AuthUserStreamWidget(
-                          child: AutoSizeText(
-                            'Hey ${valueOrDefault<String>(
-                              currentUserDisplayName,
-                              'Earthstar',
-                            )}'
-                                .maybeHandleOverflow(
-                              maxChars: 14,
-                              replacement: '…',
+                        Expanded(
+                          child: AuthUserStreamWidget(
+                            child: AutoSizeText(
+                              'Hey ${valueOrDefault<String>(
+                                currentUserDisplayName,
+                                'Earthstar',
+                              )}'
+                                  .maybeHandleOverflow(
+                                maxChars: 14,
+                                replacement: '…',
+                              ),
+                              textAlign: TextAlign.start,
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.w600,
+                                        lineHeight: 1.2,
+                                      ),
                             ),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).title1.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.black,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w600,
-                                  lineHeight: 1.2,
-                                ),
                           ),
                         ),
                         Icon(
@@ -291,13 +293,12 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                             FFAppState().meditIndex + 1);
                                       }
 
-                                      await Navigator.pushAndRemoveUntil(
+                                      await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               VideoPlayerMeditationWidget(),
                                         ),
-                                        (r) => false,
                                       );
                                     },
                                     child: Card(
@@ -362,7 +363,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                         max: 16,
                                         count: 1,
                                       );
-                                      await Navigator.pushAndRemoveUntil(
+                                      await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
@@ -373,7 +374,6 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                             ),
                                           ),
                                         ),
-                                        (r) => false,
                                       );
                                       setState(() =>
                                           FFAppState().affirmationPush = false);
@@ -983,7 +983,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                             return InkWell(
                               onTap: () async {
                                 if (currentUserDocument?.premium) {
-                                  await Navigator.pushAndRemoveUntil(
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
@@ -993,7 +993,6 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                 .reference,
                                       ),
                                     ),
-                                    (r) => false,
                                   );
                                 } else {
                                   await Navigator.push(
@@ -1631,7 +1630,6 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                         ),
                                         borderRadius: 5,
                                       ),
-                                      showLoadingIndicator: false,
                                     ),
                                   ),
                                 ),

@@ -174,7 +174,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                               ),
                               InkWell(
                                 onTap: () async {
-                                  await Navigator.pushAndRemoveUntil(
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => QuitCourseWidget(
@@ -182,7 +182,6 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                             widget.courseRefAddcomment,
                                       ),
                                     ),
-                                    (r) => false,
                                   );
                                 },
                                 child: Icon(
@@ -257,7 +256,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                         color: Colors.black,
                                       ),
                                   textAlign: TextAlign.justify,
-                                  maxLines: 12,
+                                  maxLines: 4,
                                 ),
                               ),
                             ],
@@ -351,7 +350,6 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                       ),
                                       borderRadius: 5,
                                     ),
-                                    showLoadingIndicator: false,
                                   ),
                                 ),
                               ),

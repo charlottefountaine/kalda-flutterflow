@@ -123,7 +123,6 @@ class _YouDidItWidgetState extends State<YouDidItWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

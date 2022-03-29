@@ -52,17 +52,23 @@ class _VideoPlayerMindfSessionWidgetState
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                FlutterFlowVideoPlayer(
-                  path: videoPlayerMindfSessionMindfulnessSessionsRecord
-                      .sessionVideo,
-                  videoType: VideoType.network,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 1,
-                  autoPlay: true,
-                  looping: false,
-                  showControls: false,
-                  allowFullScreen: false,
-                  allowPlaybackSpeedMenu: false,
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  child: FlutterFlowVideoPlayer(
+                    path: videoPlayerMindfSessionMindfulnessSessionsRecord
+                        .sessionVideo,
+                    videoType: VideoType.network,
+                    width: MediaQuery.of(context).size.width * 0.83,
+                    autoPlay: true,
+                    looping: false,
+                    showControls: false,
+                    allowFullScreen: false,
+                    allowPlaybackSpeedMenu: false,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 46, 20, 0),

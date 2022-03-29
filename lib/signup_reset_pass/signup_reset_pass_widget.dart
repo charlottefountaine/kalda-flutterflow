@@ -188,7 +188,6 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

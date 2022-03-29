@@ -118,7 +118,6 @@ class _PremiumExpiredWidgetState extends State<PremiumExpiredWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

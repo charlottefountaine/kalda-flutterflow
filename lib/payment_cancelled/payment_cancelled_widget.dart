@@ -118,7 +118,6 @@ class _PaymentCancelledWidgetState extends State<PaymentCancelledWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

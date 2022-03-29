@@ -232,7 +232,6 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),
