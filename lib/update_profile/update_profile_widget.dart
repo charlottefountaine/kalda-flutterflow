@@ -10,14 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignupCreateAcc2Widget extends StatefulWidget {
-  const SignupCreateAcc2Widget({Key key}) : super(key: key);
+class UpdateProfileWidget extends StatefulWidget {
+  const UpdateProfileWidget({Key key}) : super(key: key);
 
   @override
-  _SignupCreateAcc2WidgetState createState() => _SignupCreateAcc2WidgetState();
+  _UpdateProfileWidgetState createState() => _UpdateProfileWidgetState();
 }
 
-class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
+class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
   TextEditingController pronounsCreateAccController;
   TextEditingController usernameCreateAccController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -64,7 +64,7 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                     children: [
                       Expanded(
                         child: AutoSizeText(
-                          'Create your account',
+                          'Update your profile',
                           textAlign: TextAlign.start,
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Poppins',
@@ -203,7 +203,6 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                               final usersUpdateData = createUsersRecordData(
                                 displayName: usernameCreateAccController.text,
                                 pronouns: pronounsCreateAccController.text,
-                                premium: true,
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
@@ -237,6 +236,35 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
+                  child: InkWell(
+                    onTap: () async {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional(0, 0),
+                        child: Text(
+                          'Cancel',
+                          textAlign: TextAlign.center,
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFF303030),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],

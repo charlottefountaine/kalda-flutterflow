@@ -11,6 +11,7 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CourseAddcommentWidget extends StatefulWidget {
@@ -76,8 +77,9 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitPumpingHeart(
                 color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -110,8 +112,9 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                   child: SizedBox(
                     width: 50,
                     height: 50,
-                    child: CircularProgressIndicator(
+                    child: SpinKitPumpingHeart(
                       color: FlutterFlowTheme.of(context).primaryColor,
+                      size: 50,
                     ),
                   ),
                 );
@@ -152,7 +155,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => BlazeScreenWidget(
@@ -160,6 +163,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                             widget.courseRefAddcomment,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 child: Icon(
@@ -252,7 +256,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                         color: Colors.black,
                                       ),
                                   textAlign: TextAlign.justify,
-                                  maxLines: 12,
+                                  maxLines: 4,
                                 ),
                               ),
                             ],
@@ -295,26 +299,27 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                           ...createUsersCoursesRecordData(
                                             courseFinished: true,
                                           ),
-                                          'progress': FieldValue.increment(0),
+                                          'progress': FieldValue.increment(1),
                                         };
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
                                             .update(usersCoursesUpdateData);
-                                        await Navigator.push(
+                                        await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 YouDidItWidget(),
                                           ),
+                                          (r) => false,
                                         );
                                       } else {
                                         final usersCoursesUpdateData = {
-                                          'progress': FieldValue.increment(0),
+                                          'progress': FieldValue.increment(1),
                                         };
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
                                             .update(usersCoursesUpdateData);
-                                        await Navigator.push(
+                                        await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
@@ -323,6 +328,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                                   widget.courseRefAddcomment,
                                             ),
                                           ),
+                                          (r) => false,
                                         );
                                       }
                                     },
@@ -344,7 +350,6 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                       ),
                                       borderRadius: 5,
                                     ),
-                                    showLoadingIndicator: false,
                                   ),
                                 ),
                               ),

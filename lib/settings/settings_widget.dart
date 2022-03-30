@@ -1,17 +1,17 @@
 import '../auth/auth_util.dart';
-import '../feedback/feedback_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../help/help_widget.dart';
 import '../journal_entries/journal_entries_widget.dart';
-import '../onboarding/onboarding_widget.dart';
 import '../payment_cancelled/payment_cancelled_widget.dart';
 import '../payment_unlock/payment_unlock_widget.dart';
 import '../privacy_statement/privacy_statement_widget.dart';
 import '../program_journal_entries/program_journal_entries_widget.dart';
+import '../signup_create_acc/signup_create_acc_widget.dart';
 import '../terms_conditions/terms_conditions_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingsWidget extends StatefulWidget {
@@ -116,12 +116,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 ),
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FeedbackWidget(),
-                      ),
-                    );
+                    await launchURL('https://forms.gle/X4UZTSpdVRvkcjFY7');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -297,141 +292,150 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 Divider(
                   color: Colors.black,
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
+                if ((FFAppState().onboardingComplete) !=
+                    (FFAppState().onboardingComplete))
+                  Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          'Payment',
-                          textAlign: TextAlign.start,
-                          style:
-                              FlutterFlowTheme.of(context).bodyText2.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: AutoSizeText(
+                                'Payment',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+                      Divider(
+                        color: Colors.black,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: 100,
+                              height: 30,
+                              decoration: BoxDecoration(),
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PaymentUnlockWidget(),
+                                    ),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Align(
+                                      alignment: AlignmentDirectional(-1, 0.1),
+                                      child: Text(
+                                        'Payment',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(1, 0),
+                                        child: Icon(
+                                          Icons.chevron_right,
+                                          color: Colors.black,
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.black,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PaymentCancelledWidget(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                width: 100,
+                                height: 30,
+                                decoration: BoxDecoration(),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Align(
+                                      alignment: AlignmentDirectional(-1, 0.1),
+                                      child: Text(
+                                        'Restore payment',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(1, 0),
+                                        child: Icon(
+                                          Icons.chevron_right,
+                                          color: Colors.black,
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.black,
                       ),
                     ],
                   ),
-                ),
-                Divider(
-                  color: Colors.black,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        width: 100,
-                        height: 30,
-                        decoration: BoxDecoration(),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PaymentUnlockWidget(),
-                              ),
-                            );
-                          },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(-1, 0.1),
-                                child: Text(
-                                  'Payment',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: AlignmentDirectional(1, 0),
-                                  child: Icon(
-                                    Icons.chevron_right,
-                                    color: Colors.black,
-                                    size: 24,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Divider(
-                  color: Colors.black,
-                ),
-                InkWell(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PaymentCancelledWidget(),
-                      ),
-                    );
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: 100,
-                          height: 30,
-                          decoration: BoxDecoration(),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(-1, 0.1),
-                                child: Text(
-                                  'Restore payment',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: AlignmentDirectional(1, 0),
-                                  child: Icon(
-                                    Icons.chevron_right,
-                                    color: Colors.black,
-                                    size: 24,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(
-                  color: Colors.black,
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                   child: Row(
@@ -662,7 +666,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             await Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => OnboardingWidget(),
+                                builder: (context) => SignupCreateAccWidget(),
                               ),
                               (r) => false,
                             );
@@ -672,29 +676,16 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             children: [
                               Align(
                                 alignment: AlignmentDirectional(-1, 0.1),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await signOut();
-                                    await Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            OnboardingWidget(),
+                                child: Text(
+                                  'Log out',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
                                       ),
-                                      (r) => false,
-                                    );
-                                  },
-                                  child: Text(
-                                    'Log out',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
                                 ),
                               ),
                               Expanded(

@@ -6,6 +6,7 @@ import '../main_page_paid/main_page_paid_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuitCourseWidget extends StatefulWidget {
@@ -98,16 +99,17 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => BlazeScreenWidget(
                                     blazeVideoRef: widget.courseRefQuit,
                                   ),
                                 ),
+                                (r) => false,
                               );
                             },
-                            text: 'Continue',
+                            text: 'Continue course',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
@@ -125,7 +127,6 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),
@@ -136,11 +137,12 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => MainPagePaidWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

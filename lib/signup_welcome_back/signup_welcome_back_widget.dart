@@ -1,12 +1,15 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main_page_free/main_page_free_widget.dart';
+import '../main_page_paid/main_page_paid_widget.dart';
 import '../signup_create_acc/signup_create_acc_widget.dart';
 import '../signup_reset_pass/signup_reset_pass_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupWelcomeBackWidget extends StatefulWidget {
@@ -123,10 +126,16 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                 if (user == null) {
                                   return;
                                 }
+
+                                final usersUpdateData = createUsersRecordData(
+                                  premium: true,
+                                );
+                                await currentUserReference
+                                    .update(usersUpdateData);
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MainPageFreeWidget(),
+                                    builder: (context) => MainPagePaidWidget(),
                                   ),
                                   (r) => false,
                                 );
@@ -146,9 +155,58 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                        child: Card(
+                      if (isiOS ?? true)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFF090F13),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                              child: InkWell(
+                                onTap: () async {
+                                  final user = await signInWithApple(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersUpdateData = createUsersRecordData(
+                                    premium: true,
+                                  );
+                                  await currentUserReference
+                                      .update(usersUpdateData);
+                                  await Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          MainPagePaidWidget(),
+                                    ),
+                                    (r) => false,
+                                  );
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/apple.png',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      if ((FFAppState().onboardingComplete) !=
+                          (FFAppState().onboardingComplete))
+                        Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           color: Color(0xFF090F13),
                           shape: RoundedRectangleBorder(
@@ -158,14 +216,20 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                             child: InkWell(
                               onTap: () async {
-                                final user = await signInWithApple(context);
+                                final user = await signInWithFacebook(context);
                                 if (user == null) {
                                   return;
                                 }
+
+                                final usersUpdateData = createUsersRecordData(
+                                  premium: true,
+                                );
+                                await currentUserReference
+                                    .update(usersUpdateData);
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MainPageFreeWidget(),
+                                    builder: (context) => MainPagePaidWidget(),
                                   ),
                                   (r) => false,
                                 );
@@ -178,50 +242,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
-                                  'assets/images/apple.png',
-                                  fit: BoxFit.fill,
+                                  'assets/images/facebook.png',
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Color(0xFF090F13),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                          child: InkWell(
-                            onTap: () async {
-                              final user = await signInWithFacebook(context);
-                              if (user == null) {
-                                return;
-                              }
-                              await Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MainPageFreeWidget(),
-                                ),
-                                (r) => false,
-                              );
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/facebook.png',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -369,7 +395,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MainPageFreeWidget(),
+                                  builder: (context) => MainPagePaidWidget(),
                                 ),
                                 (r) => false,
                               );
@@ -392,7 +418,6 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),
@@ -403,11 +428,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupResetPassWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(
@@ -437,11 +463,12 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupCreateAccWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

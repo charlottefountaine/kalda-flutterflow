@@ -35,6 +35,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get pronouns;
 
   @nullable
+  bool get premium;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -44,7 +47,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..photoUrl = ''
     ..uid = ''
     ..phoneNumber = ''
-    ..pronouns = '';
+    ..pronouns = ''
+    ..premium = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -75,6 +79,7 @@ Map<String, dynamic> createUsersRecordData({
   DateTime createdTime,
   String phoneNumber,
   String pronouns,
+  bool premium,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -85,4 +90,5 @@ Map<String, dynamic> createUsersRecordData({
           ..uid = uid
           ..createdTime = createdTime
           ..phoneNumber = phoneNumber
-          ..pronouns = pronouns));
+          ..pronouns = pronouns
+          ..premium = premium));

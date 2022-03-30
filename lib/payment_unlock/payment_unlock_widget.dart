@@ -6,6 +6,7 @@ import '../privacy_statement/privacy_statement_widget.dart';
 import '../terms_conditions/terms_conditions_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PaymentUnlockWidget extends StatefulWidget {
@@ -314,12 +315,14 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await Navigator.push(
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       PaymentSuccessfulWidget(),
                                                 ),
+                                                (r) => false,
                                               );
                                             },
                                             text: '£2.99 a month',
@@ -342,7 +345,6 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                               ),
                                               borderRadius: 5,
                                             ),
-                                            showLoadingIndicator: false,
                                           ),
                                         ),
                                       ),

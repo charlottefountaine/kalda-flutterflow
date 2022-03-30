@@ -3,7 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_web_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PrivacyStatementWidget extends StatefulWidget {
@@ -15,15 +15,6 @@ class PrivacyStatementWidget extends StatefulWidget {
 
 class _PrivacyStatementWidgetState extends State<PrivacyStatementWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      Navigator.pop(context);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +33,8 @@ class _PrivacyStatementWidgetState extends State<PrivacyStatementWidget> {
             color: Colors.black,
             size: 30,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            Navigator.pop(context);
           },
         ),
         actions: [],

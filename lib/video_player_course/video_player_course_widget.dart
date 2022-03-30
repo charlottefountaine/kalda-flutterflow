@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../quit_course/quit_course_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VideoPlayerCourseWidget extends StatefulWidget {
@@ -44,8 +45,9 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitPumpingHeart(
                 color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -67,50 +69,57 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                StreamBuilder<List<VideosRecord>>(
-                  stream: queryVideosRecord(
-                    queryBuilder: (videosRecord) => videosRecord
-                        .where('courseRef', isEqualTo: widget.courseRefPlayer)
-                        .where('index',
-                            isEqualTo:
-                                videoPlayerCourseUsersCoursesRecord.progress),
-                    singleRecord: true,
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
                   ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.of(context).primaryColor,
+                  child: StreamBuilder<List<VideosRecord>>(
+                    stream: queryVideosRecord(
+                      queryBuilder: (videosRecord) => videosRecord
+                          .where('courseRef', isEqualTo: widget.courseRefPlayer)
+                          .where('index',
+                              isEqualTo:
+                                  videoPlayerCourseUsersCoursesRecord.progress),
+                      singleRecord: true,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitPumpingHeart(
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 50,
+                            ),
                           ),
-                        ),
+                        );
+                      }
+                      List<VideosRecord> videoPlayerVideosRecordList =
+                          snapshot.data;
+                      // Return an empty Container when the document does not exist.
+                      if (snapshot.data.isEmpty) {
+                        return Container();
+                      }
+                      final videoPlayerVideosRecord =
+                          videoPlayerVideosRecordList.isNotEmpty
+                              ? videoPlayerVideosRecordList.first
+                              : null;
+                      return FlutterFlowVideoPlayer(
+                        path: videoPlayerVideosRecord.videoLink,
+                        videoType: VideoType.network,
+                        width: MediaQuery.of(context).size.width * 0.83,
+                        autoPlay: true,
+                        looping: false,
+                        showControls: false,
+                        allowFullScreen: false,
+                        allowPlaybackSpeedMenu: false,
                       );
-                    }
-                    List<VideosRecord> videoPlayerVideosRecordList =
-                        snapshot.data;
-                    // Return an empty Container when the document does not exist.
-                    if (snapshot.data.isEmpty) {
-                      return Container();
-                    }
-                    final videoPlayerVideosRecord =
-                        videoPlayerVideosRecordList.isNotEmpty
-                            ? videoPlayerVideosRecordList.first
-                            : null;
-                    return FlutterFlowVideoPlayer(
-                      path: videoPlayerVideosRecord.videoLink,
-                      videoType: VideoType.network,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 1,
-                      autoPlay: true,
-                      looping: false,
-                      showControls: false,
-                      allowFullScreen: false,
-                      allowPlaybackSpeedMenu: false,
-                    );
-                  },
+                    },
+                  ),
                 ),
                 Align(
                   alignment: AlignmentDirectional(-0.06, 1),

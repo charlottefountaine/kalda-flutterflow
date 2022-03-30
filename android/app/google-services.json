@@ -7,26 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:384010699824:android:a303185a43c7d21f0bd9f5",
+        "mobilesdk_app_id": "1:384010699824:android:227c1020ac3217e70bd9f5",
         "android_client_info": {
-          "package_name": "com.flutterflow.kaldafeb2022"
+          "package_name": "com.flutterflow.kalda"
         }
       },
       "oauth_client": [
         {
-          "client_id": "384010699824-8emiotblkk9jec0lkkpkk3nou9pptrul.apps.googleusercontent.com",
+          "client_id": "384010699824-78fcua72mnqiii8q93hmloooq57p13j9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.flutterflow.kaldafeb2022",
+            "package_name": "com.flutterflow.kalda",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "384010699824-l53iijr520hef1rr0rak5ahhhr408n64.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.flutterflow.kaldafeb2022",
-            "certificate_hash": "712a57f817cf55f811974399d7b5d0f842ee3109"
           }
         },
         {
@@ -47,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "384010699824-hnqtq134gko4o8h7fcf1lm3ab95mj491.apps.googleusercontent.com",
+              "client_id": "384010699824-fvk7hfqrkg3p01g53cko3ko3jlvvcum4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.kalda.ios"
+                "bundle_id": "com.flutterflow.kalda"
               }
             }
           ]

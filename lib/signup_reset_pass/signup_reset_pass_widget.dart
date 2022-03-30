@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../signup_welcome_back/signup_welcome_back_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupResetPassWidget extends StatefulWidget {
@@ -160,12 +161,13 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                                 email: emailAddressLoginController.text,
                                 context: context,
                               );
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       SignupWelcomeBackWidget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Send reset link',
@@ -186,7 +188,6 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                               ),
                               borderRadius: 5,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
                       ),
@@ -197,11 +198,12 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignupWelcomeBackWidget(),
                         ),
+                        (r) => false,
                       );
                     },
                     child: Container(

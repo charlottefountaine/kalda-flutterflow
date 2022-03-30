@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_video_player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VideoPlayerMindfSessionWidget extends StatefulWidget {
@@ -27,10 +28,8 @@ class _VideoPlayerMindfSessionWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<MindfulnessSessionsRecord>>(
-      stream: queryMindfulnessSessionsRecord(
-        singleRecord: true,
-      ),
+    return StreamBuilder<MindfulnessSessionsRecord>(
+      stream: MindfulnessSessionsRecord.getDocument(widget.mindfulRefPlayer),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -38,23 +37,14 @@ class _VideoPlayerMindfSessionWidgetState
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitPumpingHeart(
                 color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
         }
-        List<MindfulnessSessionsRecord>
-            videoPlayerMindfSessionMindfulnessSessionsRecordList =
-            snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
-        final videoPlayerMindfSessionMindfulnessSessionsRecord =
-            videoPlayerMindfSessionMindfulnessSessionsRecordList.isNotEmpty
-                ? videoPlayerMindfSessionMindfulnessSessionsRecordList.first
-                : null;
+        final videoPlayerMindfSessionMindfulnessSessionsRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Colors.black,
@@ -62,17 +52,23 @@ class _VideoPlayerMindfSessionWidgetState
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                FlutterFlowVideoPlayer(
-                  path: videoPlayerMindfSessionMindfulnessSessionsRecord
-                      .sessionVideo,
-                  videoType: VideoType.network,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 1,
-                  autoPlay: true,
-                  looping: false,
-                  showControls: false,
-                  allowFullScreen: false,
-                  allowPlaybackSpeedMenu: false,
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  child: FlutterFlowVideoPlayer(
+                    path: videoPlayerMindfSessionMindfulnessSessionsRecord
+                        .sessionVideo,
+                    videoType: VideoType.network,
+                    width: MediaQuery.of(context).size.width * 0.83,
+                    autoPlay: true,
+                    looping: false,
+                    showControls: false,
+                    allowFullScreen: false,
+                    allowPlaybackSpeedMenu: false,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 46, 20, 0),

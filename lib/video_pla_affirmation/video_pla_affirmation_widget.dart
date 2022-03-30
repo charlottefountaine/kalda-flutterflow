@@ -3,10 +3,16 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VideoPlaAffirmationWidget extends StatefulWidget {
-  const VideoPlaAffirmationWidget({Key key}) : super(key: key);
+  const VideoPlaAffirmationWidget({
+    Key key,
+    this.randomNumber,
+  }) : super(key: key);
+
+  final int randomNumber;
 
   @override
   _VideoPlaAffirmationWidgetState createState() =>
@@ -20,8 +26,8 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<VideoAffirmationsRecord>>(
       stream: queryVideoAffirmationsRecord(
-        queryBuilder: (videoAffirmationsRecord) =>
-            videoAffirmationsRecord.orderBy('videoIndex'),
+        queryBuilder: (videoAffirmationsRecord) => videoAffirmationsRecord
+            .where('videoIndex', isEqualTo: widget.randomNumber),
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -31,34 +37,50 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitPumpingHeart(
                 color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
         }
         List<VideoAffirmationsRecord>
             videoPlaAffirmationVideoAffirmationsRecordList = snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
         final videoPlaAffirmationVideoAffirmationsRecord =
             videoPlaAffirmationVideoAffirmationsRecordList.isNotEmpty
                 ? videoPlaAffirmationVideoAffirmationsRecordList.first
                 : null;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: Color(0xFFF5F5F5),
+          backgroundColor: Colors.black,
           body: GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: [
-                Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 48, 0, 0),
-                      child: InkWell(
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  child: FlutterFlowVideoPlayer(
+                    path: videoPlaAffirmationVideoAffirmationsRecord.videoLink,
+                    videoType: VideoType.network,
+                    width: MediaQuery.of(context).size.width * 0.83,
+                    autoPlay: true,
+                    looping: false,
+                    showControls: false,
+                    allowFullScreen: false,
+                    allowPlaybackSpeedMenu: false,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 46, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      InkWell(
                         onTap: () async {
                           Navigator.pop(context);
                         },
@@ -68,21 +90,7 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
                           size: 36,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: FlutterFlowVideoPlayer(
-                    path: videoPlaAffirmationVideoAffirmationsRecord.videoLink,
-                    videoType: VideoType.network,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
-                    autoPlay: true,
-                    looping: false,
-                    showControls: true,
-                    allowFullScreen: true,
-                    allowPlaybackSpeedMenu: true,
+                    ],
                   ),
                 ),
               ],

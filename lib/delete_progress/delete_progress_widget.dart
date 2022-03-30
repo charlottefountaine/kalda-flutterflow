@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteProgressWidget extends StatefulWidget {
@@ -40,8 +41,9 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitPumpingHeart(
                 color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -139,13 +141,14 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                                   await deleteProgressUsersCoursesRecord
                                       .reference
                                       .update(usersCoursesUpdateData);
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => BlazeScreenWidget(
                                         blazeVideoRef: widget.courseRefDelProgr,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 text: 'Start the course again',
@@ -166,7 +169,6 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                                   ),
                                   borderRadius: 5,
                                 ),
-                                showLoadingIndicator: false,
                               ),
                             ),
                           ),

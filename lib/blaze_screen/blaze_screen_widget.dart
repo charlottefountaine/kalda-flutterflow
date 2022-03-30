@@ -4,6 +4,7 @@ import '../video_player_course/video_player_course_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BlazeScreenWidget extends StatefulWidget {
@@ -27,13 +28,14 @@ class _BlazeScreenWidgetState extends State<BlazeScreenWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 1000));
-      await Navigator.push(
+      await Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => VideoPlayerCourseWidget(
             courseRefPlayer: widget.blazeVideoRef,
           ),
         ),
+        (r) => false,
       );
     });
   }
@@ -43,22 +45,20 @@ class _BlazeScreenWidgetState extends State<BlazeScreenWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Image.asset(
-                  'assets/images/onboarding_background_3.png',
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Stack(
+          children: [
+            Align(
+              alignment: AlignmentDirectional(0, 0),
+              child: Image.asset(
+                'assets/images/onboarding_background_3.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

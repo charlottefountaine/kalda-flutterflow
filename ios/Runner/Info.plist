@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Kalda Feb 2022</string>
+	<string>Kalda</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Kalda Feb 2022</string>
+	<string>Kalda</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -28,7 +28,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.384010699824-pk8cmscor2i49sjmbr1sf21i08rrtboc</string>
+                <string>com.googleusercontent.apps.384010699824-fvk7hfqrkg3p01g53cko3ko3jlvvcum4</string>
                 <string>fb637841140619310</string>
             </array>
         </dict>
@@ -67,6 +67,7 @@
       <string>fb-messenger-share-api</string>
       <string>fbauth2</string>
       <string>fbshareextension</string>
+
     </array>
 
 	<key>UILaunchStoryboardName</key>
