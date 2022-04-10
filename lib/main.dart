@@ -11,10 +11,16 @@ import 'flutter_flow/internationalization.dart';
 import 'package:kalda/signup_create_acc/signup_create_acc_widget.dart';
 import 'package:kalda/main_page_paid/main_page_paid_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'flutter_flow/revenue_cat_util.dart' as revenue_cat;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await revenue_cat.initialize(
+    "testKey",
+    "testKey",
+    false,
+  );
 
   runApp(MyApp());
 }
@@ -34,7 +40,9 @@ class _MyAppState extends State<MyApp> {
   Stream<KaldaFirebaseUser> userStream;
   KaldaFirebaseUser initialUser;
   bool displaySplashImage = true;
-  final authUserSub = authenticatedUserStream.listen((_) {});
+  final authUserSub = authenticatedUserStream.listen((user) {
+    return revenue_cat.login(user?.uid);
+  });
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   void setLocale(Locale value) => setState(() => _locale = value);

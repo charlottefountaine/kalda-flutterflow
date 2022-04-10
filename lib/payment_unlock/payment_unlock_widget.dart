@@ -97,13 +97,13 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
-                        'Unlock Kalda Premium',
+                        '😊 LGBTQIA+ therapist created programs',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).title1.override(
                               fontFamily: 'Poppins',
                               color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                               lineHeight: 1.2,
                             ),
                       ),
@@ -141,7 +141,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
-                        '😊 LGBTQIA+ therapist created programes',
+                        '😊 Guided meditations for anxiety, stress and self-love',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).title1.override(
                               fontFamily: 'Poppins',
@@ -163,7 +163,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
-                        '😊 Daily habit building activities',
+                        '😊 New content coming out all the time',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).title1.override(
                               fontFamily: 'Poppins',
@@ -185,29 +185,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
-                        '😊 Mindfulness audio content',
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).title1.override(
-                              fontFamily: 'Poppins',
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              lineHeight: 1.2,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: AutoSizeText(
-                        '😊 You will be billed monthly, cancel any time in the app store.',
+                        '1-1 therapy will cost you £240 / month, try Kalda for a whole year for just £59.99.',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).title1.override(
                               fontFamily: 'Poppins',
