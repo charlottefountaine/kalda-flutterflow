@@ -3,7 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../help/help_widget.dart';
 import '../journal_entries/journal_entries_widget.dart';
-import '../payment_cancelled/payment_cancelled_widget.dart';
+import '../payment_restore/payment_restore_widget.dart';
 import '../payment_unlock/payment_unlock_widget.dart';
 import '../privacy_statement/privacy_statement_widget.dart';
 import '../program_journal_entries/program_journal_entries_widget.dart';
@@ -386,7 +386,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PaymentCancelledWidget(),
+                              builder: (context) => PaymentRestoreWidget(),
                             ),
                           );
                         },
