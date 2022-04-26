@@ -17,9 +17,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await revenue_cat.initialize(
-    "testKey",
-    "testKey",
-    false,
+    "appl_NiRhFuZWDPLvuVJWABQHkbOQdHo",
+    "goog_pzHLIYjyzoOJqYTBgWZecALqdjr",
+    true,
   );
 
   runApp(MyApp());

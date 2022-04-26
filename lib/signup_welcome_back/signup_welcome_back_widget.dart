@@ -148,7 +148,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
-                                  'assets/images/google.png',
+                                  'assets/images/google-logo-high.png',
                                 ),
                               ),
                             ),
@@ -196,7 +196,7 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
-                                    'assets/images/apple.png',
+                                    'assets/images/apple-logo-high.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -204,50 +204,48 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                             ),
                           ),
                         ),
-                      if ((FFAppState().onboardingComplete) !=
-                          (FFAppState().onboardingComplete))
-                        Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: Color(0xFF090F13),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                            child: InkWell(
-                              onTap: () async {
-                                final user = await signInWithFacebook(context);
-                                if (user == null) {
-                                  return;
-                                }
+                      Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: Color(0xFF090F13),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                          child: InkWell(
+                            onTap: () async {
+                              final user = await signInWithFacebook(context);
+                              if (user == null) {
+                                return;
+                              }
 
-                                final usersUpdateData = createUsersRecordData(
-                                  premium: true,
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MainPagePaidWidget(),
-                                  ),
-                                  (r) => false,
-                                );
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
+                              final usersUpdateData = createUsersRecordData(
+                                premium: true,
+                              );
+                              await currentUserReference
+                                  .update(usersUpdateData);
+                              await Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainPagePaidWidget(),
                                 ),
-                                child: Image.asset(
-                                  'assets/images/facebook.png',
-                                ),
+                                (r) => false,
+                              );
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset(
+                                'assets/images/facebook.png',
                               ),
                             ),
                           ),
                         ),
+                      ),
                     ],
                   ),
                 ),

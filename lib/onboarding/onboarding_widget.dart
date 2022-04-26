@@ -59,7 +59,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                               child: Image.asset(
-                                'assets/images/welcome-image.png',
+                                'assets/images/welcome-high.png',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.scaleDown,
                               ),

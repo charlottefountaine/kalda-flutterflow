@@ -1,9 +1,9 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../payment_unlock/payment_unlock_widget.dart';
+import '../flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -381,81 +381,81 @@ class _SessionEntryPaidWidgetState extends State<SessionEntryPaidWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        if (currentUserDocument?.premium ?? true)
+                        if (revenue_cat.activeEntitlementIds
+                                ?.contains('Standard entitlement') ??
+                            true)
                           Expanded(
                             child: Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                                child: AuthUserStreamWidget(
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      await launchURL(valueOrDefault<String>(
-                                        sessionEntryPaidLiveSessionsRecord
-                                            .sessionZoomLink,
-                                        'https://us02web.zoom.us/j/9960027821',
-                                      ));
-                                    },
-                                    text: 'Connect to session',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 56,
-                                      color: Color(0xFF00F3FD),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 2,
-                                      ),
-                                      borderRadius: 5,
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    await launchURL(valueOrDefault<String>(
+                                      sessionEntryPaidLiveSessionsRecord
+                                          .sessionZoomLink,
+                                      'https://us02web.zoom.us/j/9960027821',
+                                    ));
+                                  },
+                                  text: 'Connect to session',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 56,
+                                    color: Color(0xFF00F3FD),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                      width: 2,
                                     ),
+                                    borderRadius: 5,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        if (!(currentUserDocument?.premium) ?? true)
+                        if (!(revenue_cat.activeEntitlementIds
+                                ?.contains('Standard entitlement')) ??
+                            true)
                           Expanded(
                             child: Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                                child: AuthUserStreamWidget(
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PaymentUnlockWidget(),
-                                        ),
-                                      );
-                                    },
-                                    text: 'Upgrade to premium',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 56,
-                                      color: Color(0xFF00F3FD),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 2,
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PaymentUnlockWidget(),
                                       ),
-                                      borderRadius: 5,
+                                    );
+                                  },
+                                  text: 'Upgrade to premium',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 56,
+                                    color: Color(0xFF00F3FD),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                      width: 2,
                                     ),
+                                    borderRadius: 5,
                                   ),
                                 ),
                               ),
