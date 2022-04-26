@@ -240,7 +240,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                 revenue_cat.offerings.current.annual.product
                                     .priceString,
                                 '£59.99',
-                              )}Annual',
+                              )} Annual',
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'Poppins',
@@ -323,7 +323,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                               revenue_cat
                                   .offerings.current.annual.product.priceString,
                               '£59.99',
-                            )}Annual',
+                            )} Annual',
                             style: FlutterFlowTheme.of(context).title2.override(
                                   fontFamily: 'Poppins',
                                   fontSize: 18,
@@ -402,7 +402,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                 revenue_cat.offerings.current.monthly.product
                                     .priceString,
                                 '£10.99',
-                              )}Monthly',
+                              )} Monthly',
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'Poppins',
@@ -467,7 +467,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                               revenue_cat.offerings.current.monthly.product
                                   .priceString,
                               '£10.99',
-                            )}Monthly',
+                            )} Monthly',
                             style: FlutterFlowTheme.of(context).title2.override(
                                   fontFamily: 'Poppins',
                                   fontSize: 18,
