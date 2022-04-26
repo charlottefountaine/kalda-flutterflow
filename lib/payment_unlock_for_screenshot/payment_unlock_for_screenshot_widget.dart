@@ -11,14 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PaymentUnlockWidget extends StatefulWidget {
-  const PaymentUnlockWidget({Key key}) : super(key: key);
+class PaymentUnlockForScreenshotWidget extends StatefulWidget {
+  const PaymentUnlockForScreenshotWidget({Key key}) : super(key: key);
 
   @override
-  _PaymentUnlockWidgetState createState() => _PaymentUnlockWidgetState();
+  _PaymentUnlockForScreenshotWidgetState createState() =>
+      _PaymentUnlockForScreenshotWidgetState();
 }
 
-class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
+class _PaymentUnlockForScreenshotWidgetState
+    extends State<PaymentUnlockForScreenshotWidget> {
   bool didPurchaseA;
   bool didPurchaseM;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -188,11 +190,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
-                        '1-1 therapy will cost you £240 / month, try Kalda for a whole year for just ${valueOrDefault<String>(
-                          revenue_cat
-                              .offerings.current.annual.product.priceString,
-                          '£59.99.',
-                        )}',
+                        '1-1 therapy will cost you £240 / month, try Kalda for a whole year for just  £59.99',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).title1.override(
                               fontFamily: 'Poppins',
@@ -206,89 +204,6 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   ],
                 ),
               ),
-              if (!(FFAppState().annualSub) ?? true)
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
-                  child: InkWell(
-                    onTap: () async {
-                      setState(() => FFAppState().annualSub = true);
-                      setState(() =>
-                          FFAppState().monthlySub = !(FFAppState().annualSub));
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 80,
-                      constraints: BoxConstraints(
-                        maxHeight: 100,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0x99FFFFFF),
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          width: 2,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
-                            child: Text(
-                              '${valueOrDefault<String>(
-                                revenue_cat.offerings.current.annual.product
-                                    .priceString,
-                                '£59.99',
-                              )}Annual',
-                              style:
-                                  FlutterFlowTheme.of(context).title2.override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 18,
-                                      ),
-                            ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                child: Text(
-                                  'First 3 months FREE',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                                child: Container(
-                                  width: 100,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                      width: 1,
-                                    ),
-                                  ),
-                                  alignment: AlignmentDirectional(0, 0),
-                                  child: Text(
-                                    'Save 55%',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
               if (FFAppState().annualSub ?? true)
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
@@ -319,11 +234,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
                           child: Text(
-                            '${valueOrDefault<String>(
-                              revenue_cat
-                                  .offerings.current.annual.product.priceString,
-                              '£59.99',
-                            )}Annual',
+                            ' £59.99 Annual',
                             style: FlutterFlowTheme.of(context).title2.override(
                                   fontFamily: 'Poppins',
                                   fontSize: 18,
@@ -398,11 +309,7 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
                             child: Text(
-                              '${valueOrDefault<String>(
-                                revenue_cat.offerings.current.monthly.product
-                                    .priceString,
-                                '£10.99',
-                              )}Monthly',
+                              ' £10.99 Monthly',
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'Poppins',
@@ -430,68 +337,6 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-              if (FFAppState().monthlySub ?? true)
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 80,
-                    constraints: BoxConstraints(
-                      maxHeight: 100,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFE5CE2E),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 15,
-                          color: Colors.black,
-                          offset: Offset(5, 5),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        width: 2,
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
-                          child: Text(
-                            '${valueOrDefault<String>(
-                              revenue_cat.offerings.current.monthly.product
-                                  .priceString,
-                              '£10.99',
-                            )}Monthly',
-                            style: FlutterFlowTheme.of(context).title2.override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 18,
-                                ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                child: Text(
-                                  'First 7 days FREE',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ),
@@ -624,29 +469,6 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                                   .monthly
                                                                   .identifier);
                                                   _shouldSetState = true;
-                                                  if (didPurchaseM) {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            PaymentSuccessfulWidget(),
-                                                      ),
-                                                    );
-                                                    if (_shouldSetState)
-                                                      setState(() {});
-                                                    return;
-                                                  } else {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            PaymentErrorWidget(),
-                                                      ),
-                                                    );
-                                                    if (_shouldSetState)
-                                                      setState(() {});
-                                                    return;
-                                                  }
                                                 } else {
                                                   await Navigator.push(
                                                     context,
@@ -672,16 +494,25 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                   (r) => false,
                                                 );
                                               } else {
-                                                await Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PaymentErrorWidget(),
-                                                  ),
-                                                );
-                                                if (_shouldSetState)
-                                                  setState(() {});
-                                                return;
+                                                if (didPurchaseM) {
+                                                  await Navigator
+                                                      .pushAndRemoveUntil(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          PaymentSuccessfulWidget(),
+                                                    ),
+                                                    (r) => false,
+                                                  );
+                                                } else {
+                                                  await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          PaymentErrorWidget(),
+                                                    ),
+                                                  );
+                                                }
                                               }
 
                                               if (_shouldSetState)

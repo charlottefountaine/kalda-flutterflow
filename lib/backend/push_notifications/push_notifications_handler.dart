@@ -44,6 +44,7 @@ import '../../video_pla_affirmation/video_pla_affirmation_widget.dart';
 import '../../video_player_mindf_session/video_player_mindf_session_widget.dart';
 import '../../session_entry_paid/session_entry_paid_widget.dart';
 import '../../blaze_screen/blaze_screen_widget.dart';
+import '../../payment_unlock_for_screenshot/payment_unlock_for_screenshot_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -169,6 +170,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'blazeScreen': (data) async => BlazeScreenWidget(
         blazeVideoRef: getParameter(data, 'blazeVideoRef'),
       ),
+  'PaymentUnlockForScreenshot': (data) async =>
+      PaymentUnlockForScreenshotWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
