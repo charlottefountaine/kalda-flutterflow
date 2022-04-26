@@ -9,6 +9,7 @@ import '../privacy_statement/privacy_statement_widget.dart';
 import '../program_journal_entries/program_journal_entries_widget.dart';
 import '../signup_create_acc/signup_create_acc_widget.dart';
 import '../terms_conditions/terms_conditions_widget.dart';
+import '../flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -292,8 +293,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 Divider(
                   color: Colors.black,
                 ),
-                if ((FFAppState().onboardingComplete) !=
-                    (FFAppState().onboardingComplete))
+                if (!(revenue_cat.activeEntitlementIds
+                        ?.contains('Standard entitlement')) ??
+                    true)
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

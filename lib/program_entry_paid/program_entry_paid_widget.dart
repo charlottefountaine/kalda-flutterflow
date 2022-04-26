@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../payment_unlock/payment_unlock_widget.dart';
+import '../flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -364,191 +365,79 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                             ),
                           ],
                         ),
-                        if (!(currentUserDocument?.premium) ?? true)
-                          AuthUserStreamWidget(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PaymentUnlockWidget(),
-                                          ),
-                                        );
-                                      },
-                                      text: 'Upgrade to premium',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 56,
-                                        color: Color(0xFF00F3FD),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                        borderSide: BorderSide(
-                                          color: Colors.black,
-                                          width: 2,
+                        if (!(revenue_cat.activeEntitlementIds
+                                ?.contains('Standard entitlement')) ??
+                            true)
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PaymentUnlockWidget(),
                                         ),
-                                        borderRadius: 5,
+                                      );
+                                    },
+                                    text: 'Upgrade to premium',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 56,
+                                      color: Color(0xFF00F3FD),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 2,
                                       ),
+                                      borderRadius: 5,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        if (currentUserDocument?.premium ?? true)
-                          AuthUserStreamWidget(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                if (containerUsersCoursesRecord != null)
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (containerUsersCoursesRecord
-                                              .courseFinished ??
-                                          true)
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DeleteProgressWidget(
-                                                      courseRefDelProgr:
-                                                          widget.refFormList,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              text: 'Restart the course',
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 56,
-                                                color: Color(0xFF00F3FD),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 2,
-                                                ),
-                                                borderRadius: 5,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      if (!(containerUsersCoursesRecord
-                                              .courseFinished) ??
-                                          true)
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                await Navigator
-                                                    .pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        BlazeScreenWidget(
-                                                      blazeVideoRef:
-                                                          programEntryPaidCoursesRecord
-                                                              .reference,
-                                                    ),
-                                                  ),
-                                                  (r) => false,
-                                                );
-                                              },
-                                              text: 'Continue course',
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 56,
-                                                color: Color(0xFF00F3FD),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 2,
-                                                ),
-                                                borderRadius: 5,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                if (!(containerUsersCoursesRecord != null) ??
-                                    true)
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                        if (revenue_cat.activeEntitlementIds
+                                ?.contains('Standard entitlement') ??
+                            true)
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              if (containerUsersCoursesRecord != null)
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    if (containerUsersCoursesRecord
+                                            .courseFinished ??
+                                        true)
                                       Expanded(
                                         child: Align(
                                           alignment: AlignmentDirectional(0, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              final usersCoursesCreateData =
-                                                  createUsersCoursesRecordData(
-                                                userRef: currentUserReference,
-                                                refCourse:
-                                                    programEntryPaidCoursesRecord
-                                                        .reference,
-                                                progress: 0,
-                                                dUPnumberOfLessons:
-                                                    programEntryPaidCoursesRecord
-                                                        .numberOfLessons,
-                                                courseFinished: false,
-                                              );
-                                              await UsersCoursesRecord
-                                                  .collection
-                                                  .doc()
-                                                  .set(usersCoursesCreateData);
-                                              await Navigator
-                                                  .pushAndRemoveUntil(
+                                              await Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      BlazeScreenWidget(
-                                                    blazeVideoRef:
-                                                        programEntryPaidCoursesRecord
-                                                            .reference,
+                                                      DeleteProgressWidget(
+                                                    courseRefDelProgr:
+                                                        widget.refFormList,
                                                   ),
                                                 ),
-                                                (r) => false,
                                               );
                                             },
-                                            text: 'Start the program',
+                                            text: 'Restart the course',
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 56,
@@ -571,10 +460,118 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                              ],
-                            ),
+                                    if (!(containerUsersCoursesRecord
+                                            .courseFinished) ??
+                                        true)
+                                      Expanded(
+                                        child: Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      BlazeScreenWidget(
+                                                    blazeVideoRef:
+                                                        programEntryPaidCoursesRecord
+                                                            .reference,
+                                                  ),
+                                                ),
+                                                (r) => false,
+                                              );
+                                            },
+                                            text: 'Continue course',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 56,
+                                              color: Color(0xFF00F3FD),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 2,
+                                              ),
+                                              borderRadius: 5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              if (!(containerUsersCoursesRecord != null) ??
+                                  true)
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            final usersCoursesCreateData =
+                                                createUsersCoursesRecordData(
+                                              userRef: currentUserReference,
+                                              refCourse:
+                                                  programEntryPaidCoursesRecord
+                                                      .reference,
+                                              progress: 0,
+                                              dUPnumberOfLessons:
+                                                  programEntryPaidCoursesRecord
+                                                      .numberOfLessons,
+                                              courseFinished: false,
+                                            );
+                                            await UsersCoursesRecord.collection
+                                                .doc()
+                                                .set(usersCoursesCreateData);
+                                            await Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BlazeScreenWidget(
+                                                  blazeVideoRef:
+                                                      programEntryPaidCoursesRecord
+                                                          .reference,
+                                                ),
+                                              ),
+                                              (r) => false,
+                                            );
+                                          },
+                                          text: 'Start the program',
+                                          options: FFButtonOptions(
+                                            width: double.infinity,
+                                            height: 56,
+                                            color: Color(0xFF00F3FD),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .subtitle2
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                            borderSide: BorderSide(
+                                              color: Colors.black,
+                                              width: 2,
+                                            ),
+                                            borderRadius: 5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                            ],
                           ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),

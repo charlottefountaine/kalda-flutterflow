@@ -15,6 +15,7 @@ import '../video_pla_affirmation/video_pla_affirmation_widget.dart';
 import '../video_player_meditation/video_player_meditation_widget.dart';
 import '../video_player_mindf_session/video_player_mindf_session_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
+import '../flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -59,8 +60,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (!(currentUserDocument?.pronouns != null &&
-          currentUserDocument?.pronouns != '')) {
+      if (!((currentUserDocument?.pronouns != null) &&
+          (currentUserDocument?.pronouns != ''))) {
         var confirmDialogResponse = await showDialog<bool>(
               context: context,
               builder: (alertDialogContext) {
@@ -146,39 +147,38 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                           size: 34,
                         ),
                       ),
-                      if (!(currentUserDocument?.premium) ?? true)
+                      if (!(revenue_cat.activeEntitlementIds
+                              ?.contains('Standard entitlement')) ??
+                          true)
                         Expanded(
                           child: Align(
                             alignment: AlignmentDirectional(1, 0),
-                            child: AuthUserStreamWidget(
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          PaymentUnlockWidget(),
-                                    ),
-                                  );
-                                },
-                                text: 'Upgrade to premium',
-                                options: FFButtonOptions(
-                                  width: 220,
-                                  height: 56,
-                                  color: Color(0xFF00F3FD),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 2,
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PaymentUnlockWidget(),
                                   ),
-                                  borderRadius: 5,
+                                );
+                              },
+                              text: 'Upgrade to premium',
+                              options: FFButtonOptions(
+                                width: 220,
+                                height: 56,
+                                color: Color(0xFF00F3FD),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
                                 ),
+                                borderRadius: 5,
                               ),
                             ),
                           ),
@@ -776,7 +776,9 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                               height: double.infinity,
                                               fit: BoxFit.fill,
                                             ),
-                                            if (currentUserDocument?.premium ??
+                                            if (revenue_cat.activeEntitlementIds
+                                                    ?.contains(
+                                                        'Standard entitlement') ??
                                                 true)
                                               Align(
                                                 alignment: AlignmentDirectional(
@@ -784,80 +786,81 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(10, 0, 10, 10),
-                                                  child: AuthUserStreamWidget(
-                                                    child: StreamBuilder<
-                                                        List<
-                                                            UsersCoursesRecord>>(
-                                                      stream:
-                                                          queryUsersCoursesRecord(
-                                                        queryBuilder: (usersCoursesRecord) =>
-                                                            usersCoursesRecord
-                                                                .where(
-                                                                    'userRef',
-                                                                    isEqualTo:
-                                                                        currentUserReference)
-                                                                .where(
-                                                                    'refCourse',
-                                                                    isEqualTo:
-                                                                        listViewCoursesRecord
-                                                                            .reference),
-                                                        singleRecord: true,
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50,
-                                                              height: 50,
-                                                              child:
-                                                                  SpinKitPumpingHeart(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                size: 50,
-                                                              ),
+                                                  child: StreamBuilder<
+                                                      List<UsersCoursesRecord>>(
+                                                    stream:
+                                                        queryUsersCoursesRecord(
+                                                      queryBuilder: (usersCoursesRecord) =>
+                                                          usersCoursesRecord
+                                                              .where('userRef',
+                                                                  isEqualTo:
+                                                                      currentUserReference)
+                                                              .where(
+                                                                  'refCourse',
+                                                                  isEqualTo:
+                                                                      listViewCoursesRecord
+                                                                          .reference),
+                                                      singleRecord: true,
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50,
+                                                            height: 50,
+                                                            child:
+                                                                SpinKitPumpingHeart(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 50,
                                                             ),
-                                                          );
-                                                        }
-                                                        List<UsersCoursesRecord>
-                                                            progressBarUsersCoursesRecordList =
-                                                            snapshot.data;
-                                                        // Return an empty Container when the document does not exist.
-                                                        if (snapshot
-                                                            .data.isEmpty) {
-                                                          return Container();
-                                                        }
-                                                        final progressBarUsersCoursesRecord =
-                                                            progressBarUsersCoursesRecordList
-                                                                    .isNotEmpty
-                                                                ? progressBarUsersCoursesRecordList
-                                                                    .first
-                                                                : null;
-                                                        return LinearPercentIndicator(
-                                                            percent: functions.calculateProgress(
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<UsersCoursesRecord>
+                                                          progressBarUsersCoursesRecordList =
+                                                          snapshot.data;
+                                                      // Return an empty Container when the document does not exist.
+                                                      if (snapshot
+                                                          .data.isEmpty) {
+                                                        return Container();
+                                                      }
+                                                      final progressBarUsersCoursesRecord =
+                                                          progressBarUsersCoursesRecordList
+                                                                  .isNotEmpty
+                                                              ? progressBarUsersCoursesRecordList
+                                                                  .first
+                                                              : null;
+                                                      return LinearPercentIndicator(
+                                                        percent: functions
+                                                            .calculateProgress(
                                                                 progressBarUsersCoursesRecord
                                                                     .dUPnumberOfLessons,
                                                                 progressBarUsersCoursesRecord
                                                                     .progress),
-                                                            width: 160,
-                                                            lineHeight: 10,
-                                                            animation: true,
-                                                            progressColor:
-                                                                Colors.black,
-                                                            backgroundColor:
-                                                                Colors.white,
-                                                            barRadius:
-                                                                Radius.circular(
-                                                                    12));
-                                                      },
-                                                    ),
+                                                        width: 160,
+                                                        lineHeight: 10,
+                                                        animation: true,
+                                                        progressColor:
+                                                            Colors.black,
+                                                        backgroundColor:
+                                                            Colors.white,
+                                                        barRadius:
+                                                            Radius.circular(12),
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                      );
+                                                    },
                                                   ),
                                                 ),
                                               ),
-                                            if (!(currentUserDocument
-                                                    ?.premium) ??
+                                            if (!(revenue_cat
+                                                    .activeEntitlementIds
+                                                    ?.contains(
+                                                        'Standard entitlement')) ??
                                                 true)
                                               Align(
                                                 alignment:
@@ -865,43 +868,40 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 10, 10),
-                                                  child: AuthUserStreamWidget(
-                                                    child: Container(
-                                                      width: 63,
-                                                      height: 31,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xFFFF00DA),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(2),
-                                                        border: Border.all(
-                                                          color: Colors.black,
-                                                          width: 2,
-                                                        ),
+                                                  child: Container(
+                                                    width: 63,
+                                                    height: 31,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFFF00DA),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              2),
+                                                      border: Border.all(
+                                                        color: Colors.black,
+                                                        width: 2,
                                                       ),
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          'Premium',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 0),
+                                                      child: Text(
+                                                        'Premium',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyText1
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
                                                       ),
                                                     ),
                                                   ),
@@ -982,7 +982,15 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                     listViewIndex];
                             return InkWell(
                               onTap: () async {
-                                if (currentUserDocument?.premium) {
+                                final isEntitled = await revenue_cat
+                                    .isEntitled('Standard entitlement');
+                                if (isEntitled == null) {
+                                  return;
+                                } else if (!isEntitled) {
+                                  await revenue_cat.loadOfferings();
+                                }
+
+                                if (isEntitled) {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -1124,8 +1132,10 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
-                                              if (!(currentUserDocument
-                                                      ?.premium) ??
+                                              if (!(revenue_cat
+                                                      .activeEntitlementIds
+                                                      ?.contains(
+                                                          'Standard entitlement')) ??
                                                   true)
                                                 Align(
                                                   alignment:
@@ -1136,45 +1146,42 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 0, 0, 10, 10),
-                                                    child: AuthUserStreamWidget(
-                                                      child: Container(
-                                                        width: 63,
-                                                        height: 31,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(2),
-                                                          border: Border.all(
-                                                            color: Colors.black,
-                                                            width: 2,
-                                                          ),
+                                                    child: Container(
+                                                      width: 63,
+                                                      height: 31,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(2),
+                                                        border: Border.all(
+                                                          color: Colors.black,
+                                                          width: 2,
                                                         ),
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0, 0),
-                                                          child: Text(
-                                                            'Premium',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 10,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
+                                                      ),
+                                                      child: Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0, 0),
+                                                        child: Text(
+                                                          'Premium',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 10,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
                                                         ),
                                                       ),
                                                     ),
@@ -1374,8 +1381,10 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                               height: double.infinity,
                                               fit: BoxFit.contain,
                                             ),
-                                            if (!(currentUserDocument
-                                                    ?.premium) ??
+                                            if (!(revenue_cat
+                                                    .activeEntitlementIds
+                                                    ?.contains(
+                                                        'Standard entitlement')) ??
                                                 true)
                                               Align(
                                                 alignment:
@@ -1383,45 +1392,43 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 10, 10),
-                                                  child: AuthUserStreamWidget(
-                                                    child: Container(
-                                                      width: 63,
-                                                      height: 31,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(2),
-                                                        border: Border.all(
-                                                          color: Colors.black,
-                                                          width: 2,
-                                                        ),
+                                                  child: Container(
+                                                    width: 63,
+                                                    height: 31,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              2),
+                                                      border: Border.all(
+                                                        color: Colors.black,
+                                                        width: 2,
                                                       ),
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          'Premium',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 0),
+                                                      child: Text(
+                                                        'Premium',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyText1
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
                                                       ),
                                                     ),
                                                   ),
@@ -1441,203 +1448,202 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                     ),
                   ),
                 ),
-                if (!(currentUserDocument?.premium) ?? true)
+                if (!(revenue_cat.activeEntitlementIds
+                        ?.contains('Standard entitlement')) ??
+                    true)
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                    child: AuthUserStreamWidget(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: AutoSizeText(
-                                    'Unlock Kalda Premium',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          lineHeight: 1.2,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: AutoSizeText(
-                                    '😊 Live online events',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          lineHeight: 1.2,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: AutoSizeText(
-                                    '😊 LGBTQIA+ therapist created programes',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          lineHeight: 1.2,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: AutoSizeText(
-                                    '😊 Daily habit building activities',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          lineHeight: 1.2,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: AutoSizeText(
-                                    '😊 Mindfulness audio content',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          lineHeight: 1.2,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: AutoSizeText(
-                                    '😊 You will be billed monthly, cancel any time in the app store.',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          lineHeight: 1.2,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 8, 0, 30),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PaymentUnlockWidget(),
-                                          ),
-                                        );
-                                      },
-                                      text: 'Upgrade to premium',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 56,
-                                        color: Color(0xFF00F3FD),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                        borderSide: BorderSide(
-                                          color: Colors.black,
-                                          width: 2,
-                                        ),
-                                        borderRadius: 5,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoSizeText(
+                                  'Unlock Kalda Premium',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        lineHeight: 1.2,
                                       ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoSizeText(
+                                  '😊 Live online events',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoSizeText(
+                                  '😊 LGBTQIA+ therapist created programes',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoSizeText(
+                                  '😊 Daily habit building activities',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoSizeText(
+                                  '😊 Mindfulness audio content',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoSizeText(
+                                  '😊 You will be billed monthly, cancel any time in the app store.',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        lineHeight: 1.2,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 30),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PaymentUnlockWidget(),
+                                        ),
+                                      );
+                                    },
+                                    text: 'Upgrade to premium',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 56,
+                                      color: Color(0xFF00F3FD),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 2,
+                                      ),
+                                      borderRadius: 5,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
               ],

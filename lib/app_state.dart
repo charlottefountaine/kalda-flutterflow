@@ -38,6 +38,10 @@ class FFAppState {
     _onboardingComplete = _value;
     prefs.setBool('ff_onboardingComplete', _value);
   }
+
+  bool annualSub = true;
+
+  bool monthlySub = false;
 }
 
 LatLng _latLngFromString(String val) {

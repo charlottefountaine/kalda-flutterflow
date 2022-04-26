@@ -13,8 +13,8 @@ import '../../main.dart';
 import '../../onboarding/onboarding_widget.dart';
 import '../../signup_create_acc/signup_create_acc_widget.dart';
 import '../../signup_create_acc2/signup_create_acc2_widget.dart';
-import '../../signup_welcome_back/signup_welcome_back_widget.dart';
 import '../../signup_reset_pass/signup_reset_pass_widget.dart';
+import '../../signup_welcome_back/signup_welcome_back_widget.dart';
 import '../../update_profile/update_profile_widget.dart';
 import '../../settings/settings_widget.dart';
 import '../../feedback/feedback_widget.dart';
@@ -28,6 +28,7 @@ import '../../privacy_statement/privacy_statement_widget.dart';
 import '../../payment_unlock/payment_unlock_widget.dart';
 import '../../payment_successful/payment_successful_widget.dart';
 import '../../payment_error/payment_error_widget.dart';
+import '../../payment_restore/payment_restore_widget.dart';
 import '../../payment_cancelled/payment_cancelled_widget.dart';
 import '../../premium_restored/premium_restored_widget.dart';
 import '../../premium_expired/premium_expired_widget.dart';
@@ -113,8 +114,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Onboarding': (data) async => OnboardingWidget(),
   'SignupCreateAcc': (data) async => SignupCreateAccWidget(),
   'SignupCreateAcc2': (data) async => SignupCreateAcc2Widget(),
-  'SignupWelcomeBack': (data) async => SignupWelcomeBackWidget(),
   'SignupResetPass': (data) async => SignupResetPassWidget(),
+  'SignupWelcomeBack': (data) async => SignupWelcomeBackWidget(),
   'updateProfile': (data) async => UpdateProfileWidget(),
   'Settings': (data) async => SettingsWidget(),
   'Feedback': (data) async => FeedbackWidget(),
@@ -132,6 +133,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'PaymentUnlock': (data) async => PaymentUnlockWidget(),
   'PaymentSuccessful': (data) async => PaymentSuccessfulWidget(),
   'PaymentError': (data) async => PaymentErrorWidget(),
+  'PaymentRestore': (data) async => PaymentRestoreWidget(),
   'PaymentCancelled': (data) async => PaymentCancelledWidget(),
   'PremiumRestored': (data) async => PremiumRestoredWidget(),
   'PremiumExpired': (data) async => PremiumExpiredWidget(),
