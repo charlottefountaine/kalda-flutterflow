@@ -1,5 +1,4 @@
 import 'package:chewie/chewie.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
@@ -10,6 +9,8 @@ enum VideoType {
   asset,
   network,
 }
+
+Set<VideoPlayerController> _videoPlayers = Set();
 
 class FlutterFlowVideoPlayer extends StatefulWidget {
   const FlutterFlowVideoPlayer({
@@ -52,6 +53,7 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
 
   @override
   void dispose() {
+    _videoPlayers.remove(_videoPlayerController);
     _videoPlayerController?.dispose();
     _chewieController?.dispose();
     super.dispose();
@@ -88,6 +90,22 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
       allowFullScreen: widget.allowFullScreen,
       allowPlaybackSpeedChanging: widget.allowPlaybackSpeedMenu,
     );
+
+    _videoPlayers.add(_videoPlayerController);
+    _videoPlayerController.addListener(() {
+      // Stop all other players when one video is playing.
+      if (_videoPlayerController.value.isPlaying) {
+        _videoPlayers.forEach((otherPlayer) {
+          if (otherPlayer != _videoPlayerController &&
+              otherPlayer.value.isPlaying) {
+            setState(() {
+              otherPlayer.pause();
+            });
+          }
+        });
+      }
+    });
+
     setState(() {});
   }
 

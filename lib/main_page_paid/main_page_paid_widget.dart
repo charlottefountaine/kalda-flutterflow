@@ -535,6 +535,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                     children: [
                       Expanded(
                         child: TextFormField(
+                          controller: emailAddressController,
                           onFieldSubmitted: (_) async {
                             setState(() => FFAppState().searchFail = true);
 
@@ -552,7 +553,6 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 const Duration(milliseconds: 5000));
                             setState(() => FFAppState().searchFail = false);
                           },
-                          controller: emailAddressController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Search for a program',
