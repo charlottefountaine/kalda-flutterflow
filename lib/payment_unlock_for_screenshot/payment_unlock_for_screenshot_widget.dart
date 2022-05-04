@@ -343,7 +343,7 @@ class _PaymentUnlockForScreenshotWidgetState
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
                 child: Text(
-                  'After free trial, the subscription will be billed at the price shown above for the option selected, and will automatically renew. Cancel any time in your app store / google play store.',
+                  'After free trial, the subscription will be billed at the price shown above for the option selected, and will automatically renew. Cancel any time in your app store.',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Poppins',

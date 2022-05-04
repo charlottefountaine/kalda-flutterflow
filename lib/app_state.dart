@@ -42,6 +42,8 @@ class FFAppState {
   bool annualSub = true;
 
   bool monthlySub = false;
+
+  int randomInt = 1;
 }
 
 LatLng _latLngFromString(String val) {

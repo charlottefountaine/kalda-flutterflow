@@ -9,42 +9,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../onboarding/onboarding_widget.dart';
-import '../../signup_create_acc/signup_create_acc_widget.dart';
-import '../../signup_create_acc2/signup_create_acc2_widget.dart';
-import '../../signup_reset_pass/signup_reset_pass_widget.dart';
-import '../../signup_welcome_back/signup_welcome_back_widget.dart';
-import '../../update_profile/update_profile_widget.dart';
-import '../../settings/settings_widget.dart';
-import '../../feedback/feedback_widget.dart';
-import '../../journal_addcomment/journal_addcomment_widget.dart';
-import '../../journal_entries/journal_entries_widget.dart';
-import '../../journal_entry/journal_entry_widget.dart';
-import '../../program_journal_entries/program_journal_entries_widget.dart';
-import '../../program_journal_entry/program_journal_entry_widget.dart';
-import '../../terms_conditions/terms_conditions_widget.dart';
-import '../../privacy_statement/privacy_statement_widget.dart';
-import '../../payment_unlock/payment_unlock_widget.dart';
-import '../../payment_successful/payment_successful_widget.dart';
-import '../../payment_error/payment_error_widget.dart';
-import '../../payment_restore/payment_restore_widget.dart';
-import '../../payment_cancelled/payment_cancelled_widget.dart';
-import '../../premium_restored/premium_restored_widget.dart';
-import '../../premium_expired/premium_expired_widget.dart';
-import '../../help/help_widget.dart';
-import '../../program_entry_paid/program_entry_paid_widget.dart';
-import '../../video_player_course/video_player_course_widget.dart';
-import '../../course_addcomment/course_addcomment_widget.dart';
-import '../../you_did_it/you_did_it_widget.dart';
-import '../../quit_course/quit_course_widget.dart';
-import '../../delete_progress/delete_progress_widget.dart';
-import '../../video_player_meditation/video_player_meditation_widget.dart';
-import '../../video_pla_affirmation/video_pla_affirmation_widget.dart';
-import '../../video_player_mindf_session/video_player_mindf_session_widget.dart';
-import '../../session_entry_paid/session_entry_paid_widget.dart';
-import '../../blaze_screen/blaze_screen_widget.dart';
-import '../../payment_unlock_for_screenshot/payment_unlock_for_screenshot_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(

@@ -57,6 +57,12 @@ class _VideoPlayerMindfSessionWidgetState
                   height: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.black,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/onboarding_background_3.png',
+                      ).image,
+                    ),
                   ),
                   child: FlutterFlowVideoPlayer(
                     path: videoPlayerMindfSessionMindfulnessSessionsRecord

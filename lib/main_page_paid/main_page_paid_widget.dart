@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -15,6 +14,7 @@ import '../video_pla_affirmation/video_pla_affirmation_widget.dart';
 import '../video_player_meditation/video_player_meditation_widget.dart';
 import '../video_player_mindf_session/video_player_mindf_session_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
+import '../flutter_flow/random_data_util.dart' as random_data;
 import '../flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -33,7 +33,6 @@ class MainPagePaidWidget extends StatefulWidget {
 
 class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
     with TickerProviderStateMixin {
-  ApiCallResponse rndNum;
   TextEditingController emailAddressController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
@@ -358,27 +357,20 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                     onTap: () async {
                                       setState(() =>
                                           FFAppState().affirmationPush = true);
-                                      rndNum = await GetRandomNumberCall.call(
-                                        min: 1,
-                                        max: 16,
-                                        count: 1,
-                                      );
+                                      setState(() => FFAppState().randomInt =
+                                          random_data.randomInteger(1, 16));
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               VideoPlaAffirmationWidget(
-                                            randomNumber: getJsonField(
-                                              (rndNum?.jsonBody ?? ''),
-                                              r'''$[0]''',
-                                            ),
+                                            randomNumber:
+                                                FFAppState().randomInt,
                                           ),
                                         ),
                                       );
                                       setState(() =>
                                           FFAppState().affirmationPush = false);
-
-                                      setState(() {});
                                     },
                                     child: Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -535,6 +527,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                     children: [
                       Expanded(
                         child: TextFormField(
+                          controller: emailAddressController,
                           onFieldSubmitted: (_) async {
                             setState(() => FFAppState().searchFail = true);
 
@@ -552,7 +545,6 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 const Duration(milliseconds: 5000));
                             setState(() => FFAppState().searchFail = false);
                           },
-                          controller: emailAddressController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Search for a program',
