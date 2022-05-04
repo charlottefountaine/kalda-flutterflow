@@ -495,18 +495,32 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                     ),
                   ),
                 ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
-                child: Text(
-                  'After free trial, the subscription will be billed at the price shown above for the option selected, and will automatically renew. Cancel any time in your app store / google play store.',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Poppins',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
+              if (isiOS ?? true)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                  child: Text(
+                    'After free trial, the subscription will be billed at the price shown above for the option selected, and will automatically renew. Cancel any time in your app store.',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
                 ),
-              ),
+              if (isAndroid ?? true)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                  child: Text(
+                    'After free trial, the subscription will be billed at the price shown above for the option selected, and will automatically renew. Cancel any time in your google play store.',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                ),
               Align(
                 alignment: AlignmentDirectional(0, 1),
                 child: Padding(
