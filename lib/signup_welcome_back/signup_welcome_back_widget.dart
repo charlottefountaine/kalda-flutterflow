@@ -21,10 +21,10 @@ class SignupWelcomeBackWidget extends StatefulWidget {
 }
 
 class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailAddressLoginController;
   TextEditingController passwordLoginController;
   bool passwordLoginVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -32,6 +32,8 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
     emailAddressLoginController = TextEditingController();
     passwordLoginController = TextEditingController();
     passwordLoginVisibility = false;
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SignupWelcomeBack'});
   }
 
   @override
@@ -122,10 +124,13 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                             child: InkWell(
                               onTap: () async {
+                                logFirebaseEvent('CircleImage-ON_TAP');
+                                logFirebaseEvent('CircleImage-Auth');
                                 final user = await signInWithGoogle(context);
                                 if (user == null) {
                                   return;
                                 }
+                                logFirebaseEvent('CircleImage-Backend-Call');
 
                                 final usersUpdateData = createUsersRecordData(
                                   premium: true,
@@ -169,10 +174,13 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                                   EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                               child: InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('CircleImage-ON_TAP');
+                                  logFirebaseEvent('CircleImage-Auth');
                                   final user = await signInWithApple(context);
                                   if (user == null) {
                                     return;
                                   }
+                                  logFirebaseEvent('CircleImage-Backend-Call');
 
                                   final usersUpdateData = createUsersRecordData(
                                     premium: true,
@@ -214,10 +222,13 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                           child: InkWell(
                             onTap: () async {
+                              logFirebaseEvent('CircleImage-ON_TAP');
+                              logFirebaseEvent('CircleImage-Auth');
                               final user = await signInWithFacebook(context);
                               if (user == null) {
                                 return;
                               }
+                              logFirebaseEvent('CircleImage-Backend-Call');
 
                               final usersUpdateData = createUsersRecordData(
                                 premium: true,
@@ -381,6 +392,9 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Auth');
+
                               final user = await signInWithEmail(
                                 context,
                                 emailAddressLoginController.text,
@@ -426,6 +440,8 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Navigate-To');
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -461,6 +477,8 @@ class _SignupWelcomeBackWidgetState extends State<SignupWelcomeBackWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Navigate-To');
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

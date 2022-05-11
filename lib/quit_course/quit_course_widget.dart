@@ -25,6 +25,12 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'QuitCourse'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -99,6 +105,8 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
@@ -137,6 +145,8 @@ class _QuitCourseWidgetState extends State<QuitCourseWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Navigate-To');
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

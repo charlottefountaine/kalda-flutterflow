@@ -18,13 +18,15 @@ class SignupCreateAcc2Widget extends StatefulWidget {
 }
 
 class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController pronounsCreateAccController;
   TextEditingController usernameCreateAccController;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SignupCreateAcc2'});
     pronounsCreateAccController =
         TextEditingController(text: currentUserDocument?.pronouns);
     usernameCreateAccController =
@@ -200,6 +202,9 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Backend-Call');
+
                               final usersUpdateData = createUsersRecordData(
                                 displayName: usernameCreateAccController.text,
                                 pronouns: pronounsCreateAccController.text,
@@ -207,6 +212,7 @@ class _SignupCreateAcc2WidgetState extends State<SignupCreateAcc2Widget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(

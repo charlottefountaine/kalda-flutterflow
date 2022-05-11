@@ -17,6 +17,13 @@ class _PrivacyStatementWidgetState extends State<PrivacyStatementWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PrivacyStatement'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -34,6 +41,8 @@ class _PrivacyStatementWidgetState extends State<PrivacyStatementWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('IconButton-ON_TAP');
+            logFirebaseEvent('IconButton-Navigate-Back');
             Navigator.pop(context);
           },
         ),

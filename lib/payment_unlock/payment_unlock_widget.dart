@@ -19,9 +19,16 @@ class PaymentUnlockWidget extends StatefulWidget {
 }
 
 class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   bool didPurchaseA;
   bool didPurchaseM;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PaymentUnlock'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +64,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                         alignment: AlignmentDirectional(1, 0),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Icon-ON_TAP');
+                            logFirebaseEvent('Icon-Navigate-Back');
                             Navigator.pop(context);
                           },
                           child: Icon(
@@ -211,7 +220,10 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Update-Local-State');
                       setState(() => FFAppState().annualSub = true);
+                      logFirebaseEvent('Container-Update-Local-State');
                       setState(() =>
                           FFAppState().monthlySub = !(FFAppState().annualSub));
                     },
@@ -373,7 +385,10 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Update-Local-State');
                       setState(() => FFAppState().monthlySub = true);
+                      logFirebaseEvent('Container-Update-Local-State');
                       setState(() =>
                           FFAppState().annualSub = !(FFAppState().monthlySub));
                     },
@@ -554,6 +569,9 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                         children: [
                                           InkWell(
                                             onTap: () async {
+                                              logFirebaseEvent('Text-ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Text-Navigate-To');
                                               await Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -576,6 +594,9 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                           ),
                                           InkWell(
                                             onTap: () async {
+                                              logFirebaseEvent('Text-ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Text-Navigate-To');
                                               await Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -618,8 +639,11 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                   20, 0, 20, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent('Button-ON_TAP');
                                               var _shouldSetState = false;
                                               if (FFAppState().annualSub) {
+                                                logFirebaseEvent(
+                                                    'Button-Revenue-Cat');
                                                 didPurchaseA = await revenue_cat
                                                     .purchasePackage(revenue_cat
                                                         .offerings
@@ -629,6 +653,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                 _shouldSetState = true;
                                               } else {
                                                 if (FFAppState().monthlySub) {
+                                                  logFirebaseEvent(
+                                                      'Button-Revenue-Cat');
                                                   didPurchaseM =
                                                       await revenue_cat
                                                           .purchasePackage(
@@ -639,6 +665,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                                   .identifier);
                                                   _shouldSetState = true;
                                                   if (didPurchaseM) {
+                                                    logFirebaseEvent(
+                                                        'Button-Navigate-To');
                                                     await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -650,6 +678,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                       setState(() {});
                                                     return;
                                                   } else {
+                                                    logFirebaseEvent(
+                                                        'Button-Navigate-To');
                                                     await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -662,6 +692,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                     return;
                                                   }
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'Button-Navigate-To');
                                                   await Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
@@ -676,6 +708,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                               }
 
                                               if (didPurchaseA) {
+                                                logFirebaseEvent(
+                                                    'Button-Navigate-To');
                                                 await Navigator
                                                     .pushAndRemoveUntil(
                                                   context,
@@ -686,6 +720,8 @@ class _PaymentUnlockWidgetState extends State<PaymentUnlockWidget> {
                                                   (r) => false,
                                                 );
                                               } else {
+                                                logFirebaseEvent(
+                                                    'Button-Navigate-To');
                                                 await Navigator.push(
                                                   context,
                                                   MaterialPageRoute(

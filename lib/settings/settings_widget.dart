@@ -26,6 +26,12 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Settings'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -57,6 +63,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -117,6 +125,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 ),
                 InkWell(
                   onTap: () async {
+                    logFirebaseEvent('Row-SocialText-ON_TAP');
+                    logFirebaseEvent('Row-SocialText-Launch-U-R-L');
                     await launchURL('https://forms.gle/X4UZTSpdVRvkcjFY7');
                   },
                   child: Row(
@@ -203,6 +213,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           children: [
                             InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Row-ON_TAP');
+                                logFirebaseEvent('Row-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -246,6 +258,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                             InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Row-ON_TAP');
+                                logFirebaseEvent('Row-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -336,6 +350,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               decoration: BoxDecoration(),
                               child: InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('Row-ON_TAP');
+                                  logFirebaseEvent('Row-Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -383,6 +399,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       ),
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Row-SocialText-ON_TAP');
+                          logFirebaseEvent('Row-SocialText-Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -465,6 +483,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 ),
                 InkWell(
                   onTap: () async {
+                    logFirebaseEvent('Row-SocialText-ON_TAP');
+                    logFirebaseEvent('Row-SocialText-Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -520,6 +540,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 ),
                 InkWell(
                   onTap: () async {
+                    logFirebaseEvent('Row-SocialText-ON_TAP');
+                    logFirebaseEvent('Row-SocialText-Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -600,6 +622,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 ),
                 InkWell(
                   onTap: () async {
+                    logFirebaseEvent('Row-SocialText-ON_TAP');
+                    logFirebaseEvent('Row-SocialText-Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -664,6 +688,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         decoration: BoxDecoration(),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Row-ON_TAP');
+                            logFirebaseEvent('Row-Auth');
                             await signOut();
                             await Navigator.pushAndRemoveUntil(
                               context,

@@ -18,12 +18,14 @@ class JournalAddcommentWidget extends StatefulWidget {
 }
 
 class _JournalAddcommentWidgetState extends State<JournalAddcommentWidget> {
-  TextEditingController usernameCreateAccController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController usernameCreateAccController;
 
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'JournalAddcomment'});
     usernameCreateAccController =
         TextEditingController(text: 'I am grateful for');
   }
@@ -61,6 +63,8 @@ class _JournalAddcommentWidgetState extends State<JournalAddcommentWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -171,6 +175,9 @@ class _JournalAddcommentWidgetState extends State<JournalAddcommentWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Backend-Call');
+
                               final gratitudeJournalCreateData =
                                   createGratitudeJournalRecordData(
                                 userRef: currentUserReference,
@@ -183,6 +190,7 @@ class _JournalAddcommentWidgetState extends State<JournalAddcommentWidget> {
                               await GratitudeJournalRecord.collection
                                   .doc()
                                   .set(gratitudeJournalCreateData);
+                              logFirebaseEvent('Button-Navigate-Back');
                               Navigator.pop(context);
                             },
                             text: 'Submit',

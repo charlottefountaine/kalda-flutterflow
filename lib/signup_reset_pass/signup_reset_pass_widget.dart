@@ -16,13 +16,15 @@ class SignupResetPassWidget extends StatefulWidget {
 }
 
 class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
-  TextEditingController emailAddressLoginController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController emailAddressLoginController;
 
   @override
   void initState() {
     super.initState();
     emailAddressLoginController = TextEditingController();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SignupResetPass'});
   }
 
   @override
@@ -147,6 +149,8 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Auth');
                               if (emailAddressLoginController.text.isEmpty) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -161,6 +165,7 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                                 email: emailAddressLoginController.text,
                                 context: context,
                               );
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
@@ -198,6 +203,8 @@ class _SignupResetPassWidgetState extends State<SignupResetPassWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Navigate-To');
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

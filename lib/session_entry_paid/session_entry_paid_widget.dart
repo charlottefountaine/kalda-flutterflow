@@ -26,6 +26,13 @@ class _SessionEntryPaidWidgetState extends State<SessionEntryPaidWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SessionEntryPaid'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<LiveSessionsRecord>(
       stream: LiveSessionsRecord.getDocument(widget.refFromSessionsList),
@@ -74,6 +81,8 @@ class _SessionEntryPaidWidgetState extends State<SessionEntryPaidWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
+                              logFirebaseEvent('Icon-ON_TAP');
+                              logFirebaseEvent('Icon-Navigate-Back');
                               Navigator.pop(context);
                             },
                             child: Icon(
@@ -392,6 +401,8 @@ class _SessionEntryPaidWidgetState extends State<SessionEntryPaidWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent('Button-ON_TAP');
+                                    logFirebaseEvent('Button-Launch-U-R-L');
                                     await launchURL(valueOrDefault<String>(
                                       sessionEntryPaidLiveSessionsRecord
                                           .sessionZoomLink,
@@ -431,6 +442,8 @@ class _SessionEntryPaidWidgetState extends State<SessionEntryPaidWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent('Button-ON_TAP');
+                                    logFirebaseEvent('Button-Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(

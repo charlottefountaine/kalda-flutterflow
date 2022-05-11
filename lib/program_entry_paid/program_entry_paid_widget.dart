@@ -29,6 +29,13 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ProgramEntryPaid'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<CoursesRecord>(
       stream: CoursesRecord.getDocument(widget.refFormList),
@@ -105,6 +112,8 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                             children: [
                               InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('Icon-ON_TAP');
+                                  logFirebaseEvent('Icon-Navigate-Back');
                                   Navigator.pop(context);
                                 },
                                 child: Icon(
@@ -377,6 +386,8 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                   alignment: AlignmentDirectional(0, 0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent('Button-ON_TAP');
+                                      logFirebaseEvent('Button-Navigate-To');
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -426,6 +437,9 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent('Button-ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button-Navigate-To');
                                               await Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -468,6 +482,9 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent('Button-ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button-Navigate-To');
                                               await Navigator
                                                   .pushAndRemoveUntil(
                                                 context,
@@ -518,6 +535,10 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                         alignment: AlignmentDirectional(0, 0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            logFirebaseEvent('Button-ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button-Backend-Call');
+
                                             final usersCoursesCreateData =
                                                 createUsersCoursesRecordData(
                                               userRef: currentUserReference,
@@ -533,6 +554,8 @@ class _ProgramEntryPaidWidgetState extends State<ProgramEntryPaidWidget> {
                                             await UsersCoursesRecord.collection
                                                 .doc()
                                                 .set(usersCoursesCreateData);
+                                            logFirebaseEvent(
+                                                'Button-Navigate-To');
                                             await Navigator.pushAndRemoveUntil(
                                               context,
                                               MaterialPageRoute(

@@ -19,6 +19,8 @@ class _TextButtonWidgetState extends State<TextButtonWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 60),
       child: InkWell(
         onTap: () async {
+          logFirebaseEvent('Container-ON_TAP');
+          logFirebaseEvent('Container-Navigate-To');
           await Navigator.push(
             context,
             MaterialPageRoute(

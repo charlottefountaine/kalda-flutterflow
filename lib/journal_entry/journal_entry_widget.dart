@@ -23,6 +23,13 @@ class _JournalEntryWidgetState extends State<JournalEntryWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'JournalEntry'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<GratitudeJournalRecord>(
       stream: GratitudeJournalRecord.getDocument(widget.gratitudeEntryRef),
@@ -72,6 +79,8 @@ class _JournalEntryWidgetState extends State<JournalEntryWidget> {
                         children: [
                           InkWell(
                             onTap: () async {
+                              logFirebaseEvent('Icon-ON_TAP');
+                              logFirebaseEvent('Icon-Navigate-Back');
                               Navigator.pop(context);
                             },
                             child: Icon(

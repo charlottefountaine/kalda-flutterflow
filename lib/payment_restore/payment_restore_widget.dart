@@ -21,6 +21,13 @@ class _PaymentRestoreWidgetState extends State<PaymentRestoreWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PaymentRestore'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -95,9 +102,12 @@ class _PaymentRestoreWidgetState extends State<PaymentRestoreWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Revenue-Cat');
                               await revenue_cat.restorePurchases();
                               if (revenue_cat.activeEntitlementIds
                                   .contains('Standard entitlement')) {
+                                logFirebaseEvent('Button-Navigate-To');
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
@@ -107,6 +117,7 @@ class _PaymentRestoreWidgetState extends State<PaymentRestoreWidget> {
                                   (r) => false,
                                 );
                               } else {
+                                logFirebaseEvent('Button-Navigate-To');
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
@@ -150,6 +161,8 @@ class _PaymentRestoreWidgetState extends State<PaymentRestoreWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(

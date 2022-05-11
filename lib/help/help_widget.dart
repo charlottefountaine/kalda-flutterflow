@@ -17,6 +17,12 @@ class _HelpWidgetState extends State<HelpWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Help'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -48,6 +54,8 @@ class _HelpWidgetState extends State<HelpWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -154,6 +162,8 @@ class _HelpWidgetState extends State<HelpWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Launch-U-R-L');
                               await launchURL('https://giveusashout.org');
                             },
                             text: 'Shout',
@@ -235,6 +245,8 @@ class _HelpWidgetState extends State<HelpWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Launch-U-R-L');
                               await launchURL('https://www.samaritans.org');
                             },
                             text: 'Samaritans',
@@ -316,6 +328,8 @@ class _HelpWidgetState extends State<HelpWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Launch-U-R-L');
                               await launchURL('https://switchboard.lgbt');
                             },
                             text: 'Switchboard',

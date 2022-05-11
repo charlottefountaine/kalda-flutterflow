@@ -19,6 +19,12 @@ class _YouDidItWidgetState extends State<YouDidItWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'YouDidIt'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -97,6 +103,8 @@ class _YouDidItWidgetState extends State<YouDidItWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(

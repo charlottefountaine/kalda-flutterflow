@@ -34,9 +34,9 @@ class _FlutterFlowWebViewState extends State<FlutterFlowWebView> {
         ignoreAllGestures: false,
         initialContent: widget.url,
         initialMediaPlaybackPolicy:
-            AutoMediaPlaybackPolicy.require_user_action_for_all_media_types,
+            AutoMediaPlaybackPolicy.requireUserActionForAllMediaTypes,
         initialSourceType:
-            widget.bypass ? SourceType.URL_BYPASS : SourceType.URL,
+            widget.bypass ? SourceType.urlBypass : SourceType.url,
         javascriptMode: JavascriptMode.unrestricted,
         webSpecificParams: const WebSpecificParams(
           webAllowFullscreenContent: true,
@@ -54,7 +54,7 @@ class _FlutterFlowWebViewState extends State<FlutterFlowWebView> {
                 () => HorizontalDragGestureRecognizer(),
               ),
           },
-          navigationDelegate: (_) => NavigationDecision.navigate,
+          androidEnableHybridComposition: true,
         ),
       );
 

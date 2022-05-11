@@ -20,6 +20,12 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Onboarding'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -65,11 +71,11 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 50, 0, 85),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  30, 50, 30, 85),
                               child: AutoSizeText(
-                                'The mental health app for\nthe LGBTQIA+ community.\nWe\'re with you. 💜',
-                                textAlign: TextAlign.justify,
+                                'Hi we’re Kalda, the mental wellbeing app for the LGBTQIA+ community. We’re with you 💜',
+                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .title1
                                     .override(
@@ -84,6 +90,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   20, 0, 20, 126),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent('Button-ON_TAP');
+                                  logFirebaseEvent('Button-Page-View');
                                   await pageViewController.nextPage(
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.ease,
@@ -143,10 +151,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 20),
+                                  EdgeInsetsDirectional.fromSTEB(30, 5, 30, 20),
                               child: Text(
-                                'Being LGBTQIA+ brings with \nit unique challenges. Our \nLGBT+ therapists have \ncreated programs to \nsupport you.',
-                                textAlign: TextAlign.justify,
+                                'Learn practical skills to manage the stresses that come with being LGBTQIA+ in a heterosexual world',
+                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .title1
                                     .override(
@@ -161,6 +169,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   20, 0, 20, 126),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent('Button-ON_TAP');
+                                  logFirebaseEvent('Button-Page-View');
                                   await pageViewController.nextPage(
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.ease,
@@ -219,11 +229,11 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 85),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  30, 30, 30, 85),
                               child: Text(
-                                'Affirmations, mindfulness \nexercises and more to \nsupport you day-to-day.',
-                                textAlign: TextAlign.justify,
+                                'Try daily affirmations, meditations, and journalling for a wellbeing boost whenever you need it',
+                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .title1
                                     .override(
@@ -238,8 +248,11 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   20, 0, 20, 126),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent('Button-ON_TAP');
+                                  logFirebaseEvent('Button-Update-Local-State');
                                   setState(() =>
                                       FFAppState().onboardingComplete = true);
+                                  logFirebaseEvent('Button-Navigate-To');
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(

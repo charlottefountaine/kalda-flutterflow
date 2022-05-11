@@ -33,8 +33,6 @@ class MainPagePaidWidget extends StatefulWidget {
 
 class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
     with TickerProviderStateMixin {
-  TextEditingController emailAddressController;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
     'textOnActionTriggerAnimation': AnimationInfo(
       curve: Curves.easeIn,
@@ -53,14 +51,18 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
       ),
     ),
   };
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController emailAddressController;
 
   @override
   void initState() {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('MainPagePaid-ON_PAGE_LOAD');
       if (!((currentUserDocument?.pronouns != null) &&
           (currentUserDocument?.pronouns != ''))) {
+        logFirebaseEvent('MainPagePaid-Alert-Dialog');
         var confirmDialogResponse = await showDialog<bool>(
               context: context,
               builder: (alertDialogContext) {
@@ -82,6 +84,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
             ) ??
             false;
         if (confirmDialogResponse) {
+          logFirebaseEvent('MainPagePaid-Navigate-To');
           await Navigator.push(
             context,
             MaterialPageRoute(
@@ -92,6 +95,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
       }
     });
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'MainPagePaid'});
     emailAddressController = TextEditingController();
     setupTriggerAnimations(
       animationsMap.values
@@ -133,6 +138,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -154,6 +161,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                             alignment: AlignmentDirectional(1, 0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                logFirebaseEvent('Button-ON_TAP');
+                                logFirebaseEvent('Button-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -189,6 +198,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('logoRow-ON_TAP');
+                      logFirebaseEvent('logoRow-Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -284,14 +295,20 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 children: [
                                   InkWell(
                                     onTap: () async {
+                                      logFirebaseEvent('Card-ON_TAP');
                                       if ((FFAppState().meditIndex) >= 3) {
+                                        logFirebaseEvent(
+                                            'Card-Update-Local-State');
                                         setState(
                                             () => FFAppState().meditIndex = 1);
                                       } else {
+                                        logFirebaseEvent(
+                                            'Card-Update-Local-State');
                                         setState(() => FFAppState().meditIndex =
                                             FFAppState().meditIndex + 1);
                                       }
 
+                                      logFirebaseEvent('Card-Navigate-To');
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -355,10 +372,16 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                   ),
                                   InkWell(
                                     onTap: () async {
+                                      logFirebaseEvent('Card-ON_TAP');
+                                      logFirebaseEvent(
+                                          'Card-Update-Local-State');
                                       setState(() =>
                                           FFAppState().affirmationPush = true);
+                                      logFirebaseEvent(
+                                          'Card-Update-Local-State');
                                       setState(() => FFAppState().randomInt =
                                           random_data.randomInteger(1, 16));
+                                      logFirebaseEvent('Card-Navigate-To');
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -369,6 +392,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                           ),
                                         ),
                                       );
+                                      logFirebaseEvent(
+                                          'Card-Update-Local-State');
                                       setState(() =>
                                           FFAppState().affirmationPush = false);
                                     },
@@ -427,6 +452,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                   ),
                                   InkWell(
                                     onTap: () async {
+                                      logFirebaseEvent('Card-ON_TAP');
+                                      logFirebaseEvent('Card-Navigate-To');
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -529,7 +556,11 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                         child: TextFormField(
                           controller: emailAddressController,
                           onFieldSubmitted: (_) async {
+                            logFirebaseEvent(
+                                'emailAddress-ON_TEXTFIELD_SUBMIT');
+                            logFirebaseEvent('emailAddress-Update-Local-State');
                             setState(() => FFAppState().searchFail = true);
+                            logFirebaseEvent('emailAddress-Backend-Call');
 
                             final userSearchesCreateData =
                                 createUserSearchesRecordData(
@@ -538,11 +569,14 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                             await UserSearchesRecord.collection
                                 .doc()
                                 .set(userSearchesCreateData);
+                            logFirebaseEvent('emailAddress-Clear-Text-Fields');
                             setState(() {
                               emailAddressController.clear();
                             });
+                            logFirebaseEvent('emailAddress-Wait-Delay');
                             await Future.delayed(
                                 const Duration(milliseconds: 5000));
+                            logFirebaseEvent('emailAddress-Update-Local-State');
                             setState(() => FFAppState().searchFail = false);
                           },
                           obscureText: false,
@@ -647,6 +681,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 listViewCoursesRecordList[listViewIndex];
                             return InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Card-ON_TAP');
+                                logFirebaseEvent('Card-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -974,6 +1010,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                     listViewIndex];
                             return InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Card-ON_TAP');
+                                logFirebaseEvent('Card-Revenue-Cat');
                                 final isEntitled = await revenue_cat
                                     .isEntitled('Standard entitlement');
                                 if (isEntitled == null) {
@@ -983,6 +1021,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 }
 
                                 if (isEntitled) {
+                                  logFirebaseEvent('Card-Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -995,6 +1034,7 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                     ),
                                   );
                                 } else {
+                                  logFirebaseEvent('Card-Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -1252,6 +1292,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                 listViewLiveSessionsRecordList[listViewIndex];
                             return InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Card-ON_TAP');
+                                logFirebaseEvent('Card-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -1603,6 +1645,8 @@ class _MainPagePaidWidgetState extends State<MainPagePaidWidget>
                                   alignment: AlignmentDirectional(0, 0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent('Button-ON_TAP');
+                                      logFirebaseEvent('Button-Navigate-To');
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(

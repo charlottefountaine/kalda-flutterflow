@@ -30,6 +30,13 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'VideoPlayerCourse'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<UsersCoursesRecord>>(
       stream: queryUsersCoursesRecord(
@@ -133,7 +140,10 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Navigate-Back');
                         Navigator.pop(context);
+                        logFirebaseEvent('Button-Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -171,7 +181,10 @@ class _VideoPlayerCourseWidgetState extends State<VideoPlayerCourseWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
+                          logFirebaseEvent('Icon-Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(

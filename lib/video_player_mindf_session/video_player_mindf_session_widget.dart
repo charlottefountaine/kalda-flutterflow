@@ -27,6 +27,13 @@ class _VideoPlayerMindfSessionWidgetState
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'VideoPlayerMindfSession'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<MindfulnessSessionsRecord>(
       stream: MindfulnessSessionsRecord.getDocument(widget.mindfulRefPlayer),
@@ -84,6 +91,8 @@ class _VideoPlayerMindfSessionWidgetState
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Icon(

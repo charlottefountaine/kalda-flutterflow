@@ -19,6 +19,13 @@ class _VideoPlayerMeditationWidgetState
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'VideoPlayerMeditation'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<VideoMeditationsRecord>>(
       stream: queryVideoMeditationsRecord(
@@ -80,6 +87,8 @@ class _VideoPlayerMeditationWidgetState
                   padding: EdgeInsetsDirectional.fromSTEB(20, 46, 0, 0),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Icon-ON_TAP');
+                      logFirebaseEvent('Icon-Navigate-Back');
                       Navigator.pop(context);
                     },
                     child: Icon(

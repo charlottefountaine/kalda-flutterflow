@@ -18,13 +18,15 @@ class UpdateProfileWidget extends StatefulWidget {
 }
 
 class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController pronounsCreateAccController;
   TextEditingController usernameCreateAccController;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'updateProfile'});
     pronounsCreateAccController =
         TextEditingController(text: currentUserDocument?.pronouns);
     usernameCreateAccController =
@@ -200,12 +202,16 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Backend-Call');
+
                               final usersUpdateData = createUsersRecordData(
                                 displayName: usernameCreateAccController.text,
                                 pronouns: pronounsCreateAccController.text,
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
@@ -242,6 +248,8 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Navigate-Back');
                       Navigator.pop(context);
                     },
                     child: Container(

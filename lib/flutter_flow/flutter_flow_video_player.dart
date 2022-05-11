@@ -64,11 +64,11 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
       : widget.width;
 
   double get height => widget.height == null || widget.height >= double.infinity
-      ? (width != null ? width / aspectRatio : null)
+      ? width / aspectRatio
       : widget.height;
 
   double get aspectRatio =>
-      _chewieController?.videoPlayerController?.value?.aspectRatio ??
+      _chewieController?.videoPlayerController.value.aspectRatio ??
       kDefaultAspectRatio;
 
   Future initializePlayer() async {

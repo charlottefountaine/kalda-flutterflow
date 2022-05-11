@@ -27,7 +27,10 @@ class _BlazeScreenWidgetState extends State<BlazeScreenWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('blazeScreen-ON_PAGE_LOAD');
+      logFirebaseEvent('blazeScreen-Wait-Delay');
       await Future.delayed(const Duration(milliseconds: 1000));
+      logFirebaseEvent('blazeScreen-Navigate-To');
       await Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -38,6 +41,8 @@ class _BlazeScreenWidgetState extends State<BlazeScreenWidget> {
         (r) => false,
       );
     });
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'blazeScreen'});
   }
 
   @override

@@ -28,8 +28,6 @@ class CourseAddcommentWidget extends StatefulWidget {
 
 class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
     with TickerProviderStateMixin {
-  TextEditingController usernameCreateAccController;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
     'columnOnPageLoadAnimation': AnimationInfo(
       curve: Curves.easeIn,
@@ -48,6 +46,8 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
       ),
     ),
   };
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController usernameCreateAccController;
 
   @override
   void initState() {
@@ -58,6 +58,8 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
       this,
     );
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'CourseAddcomment'});
     usernameCreateAccController = TextEditingController();
   }
 
@@ -155,6 +157,8 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                             children: [
                               InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('Icon-ON_TAP');
+                                  logFirebaseEvent('Icon-Navigate-To');
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
@@ -174,6 +178,8 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                               ),
                               InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('Icon-ON_TAP');
+                                  logFirebaseEvent('Icon-Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -273,6 +279,9 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                   alignment: AlignmentDirectional(0, 0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent('Button-ON_TAP');
+                                      logFirebaseEvent('Button-Backend-Call');
+
                                       final courseJournalCreateData =
                                           createCourseJournalRecordData(
                                         userRef: currentUserReference,
@@ -295,6 +304,8 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                               .dUPnumberOfLessons,
                                           courseAddcommentUsersCoursesRecord
                                               .progress)) {
+                                        logFirebaseEvent('Button-Backend-Call');
+
                                         final usersCoursesUpdateData = {
                                           ...createUsersCoursesRecordData(
                                             courseFinished: true,
@@ -304,6 +315,7 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
                                             .update(usersCoursesUpdateData);
+                                        logFirebaseEvent('Button-Navigate-To');
                                         await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
@@ -313,12 +325,15 @@ class _CourseAddcommentWidgetState extends State<CourseAddcommentWidget>
                                           (r) => false,
                                         );
                                       } else {
+                                        logFirebaseEvent('Button-Backend-Call');
+
                                         final usersCoursesUpdateData = {
                                           'progress': FieldValue.increment(1),
                                         };
                                         await courseAddcommentUsersCoursesRecord
                                             .reference
                                             .update(usersCoursesUpdateData);
+                                        logFirebaseEvent('Button-Navigate-To');
                                         await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(

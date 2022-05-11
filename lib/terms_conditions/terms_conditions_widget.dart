@@ -17,6 +17,13 @@ class _TermsConditionsWidgetState extends State<TermsConditionsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'TermsConditions'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -34,6 +41,8 @@ class _TermsConditionsWidgetState extends State<TermsConditionsWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('IconButton-ON_TAP');
+            logFirebaseEvent('IconButton-Navigate-Back');
             Navigator.pop(context);
           },
         ),

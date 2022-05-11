@@ -19,6 +19,13 @@ class _JournalEntriesWidgetState extends State<JournalEntriesWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'JournalEntries'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -50,6 +57,8 @@ class _JournalEntriesWidgetState extends State<JournalEntriesWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -132,6 +141,9 @@ class _JournalEntriesWidgetState extends State<JournalEntriesWidget> {
                                 children: [
                                   InkWell(
                                     onTap: () async {
+                                      logFirebaseEvent('Row-SocialText-ON_TAP');
+                                      logFirebaseEvent(
+                                          'Row-SocialText-Navigate-To');
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(

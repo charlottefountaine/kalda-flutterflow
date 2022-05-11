@@ -23,6 +23,13 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'VideoPlaAffirmation'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<VideoAffirmationsRecord>>(
       stream: queryVideoAffirmationsRecord(
@@ -88,6 +95,8 @@ class _VideoPlaAffirmationWidgetState extends State<VideoPlaAffirmationWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Icon(

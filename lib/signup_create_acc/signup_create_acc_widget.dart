@@ -22,19 +22,21 @@ class SignupCreateAccWidget extends StatefulWidget {
 }
 
 class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
   TextEditingController emailAddressController;
   TextEditingController passwordController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('SignupCreateAcc-ON_PAGE_LOAD');
       if (!(FFAppState().onboardingComplete)) {
+        logFirebaseEvent('SignupCreateAcc-Navigate-To');
         await Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -45,6 +47,8 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
       }
     });
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SignupCreateAcc'});
     confirmPasswordController = TextEditingController();
     confirmPasswordVisibility = false;
     emailAddressController = TextEditingController();
@@ -140,10 +144,13 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                             child: InkWell(
                               onTap: () async {
+                                logFirebaseEvent('CircleImage-ON_TAP');
+                                logFirebaseEvent('CircleImage-Auth');
                                 final user = await signInWithGoogle(context);
                                 if (user == null) {
                                   return;
                                 }
+                                logFirebaseEvent('CircleImage-Backend-Call');
 
                                 final usersUpdateData = createUsersRecordData(
                                   premium: true,
@@ -187,10 +194,13 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                                   EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                               child: InkWell(
                                 onTap: () async {
+                                  logFirebaseEvent('CircleImage-ON_TAP');
+                                  logFirebaseEvent('CircleImage-Auth');
                                   final user = await signInWithApple(context);
                                   if (user == null) {
                                     return;
                                   }
+                                  logFirebaseEvent('CircleImage-Backend-Call');
 
                                   final usersUpdateData = createUsersRecordData(
                                     premium: true,
@@ -232,10 +242,13 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                           child: InkWell(
                             onTap: () async {
+                              logFirebaseEvent('CircleImage-ON_TAP');
+                              logFirebaseEvent('CircleImage-Auth');
                               final user = await signInWithFacebook(context);
                               if (user == null) {
                                 return;
                               }
+                              logFirebaseEvent('CircleImage-Backend-Call');
 
                               final usersUpdateData = createUsersRecordData(
                                 premium: true,
@@ -456,6 +469,8 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent('Button-ON_TAP');
+                              logFirebaseEvent('Button-Auth');
                               if (passwordController.text !=
                                   confirmPasswordController.text) {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -477,6 +492,7 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                                 return;
                               }
 
+                              logFirebaseEvent('Button-Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 PageTransition(
@@ -516,6 +532,8 @@ class _SignupCreateAccWidgetState extends State<SignupCreateAccWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 60),
                   child: InkWell(
                     onTap: () async {
+                      logFirebaseEvent('Container-ON_TAP');
+                      logFirebaseEvent('Container-Navigate-To');
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

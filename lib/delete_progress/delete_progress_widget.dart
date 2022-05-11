@@ -26,6 +26,13 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'DeleteProgress'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<UsersCoursesRecord>>(
       stream: queryUsersCoursesRecord(
@@ -133,6 +140,9 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                               alignment: AlignmentDirectional(0, 0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent('Button-ON_TAP');
+                                  logFirebaseEvent('Button-Backend-Call');
+
                                   final usersCoursesUpdateData =
                                       createUsersCoursesRecordData(
                                     progress: 0,
@@ -141,6 +151,7 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                                   await deleteProgressUsersCoursesRecord
                                       .reference
                                       .update(usersCoursesUpdateData);
+                                  logFirebaseEvent('Button-Navigate-To');
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
@@ -179,6 +190,8 @@ class _DeleteProgressWidgetState extends State<DeleteProgressWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Container-ON_TAP');
+                          logFirebaseEvent('Container-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Container(
